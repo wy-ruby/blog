@@ -10,7 +10,7 @@ gem 'rails', '~> 5.2.0'
 gem 'mysql2'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '>= 3.12.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -193,8 +193,8 @@ gem "rack-attack"
 
 # bugsnageRuby的Bugsnag异常报告器会立即通知您从Rails，Sinatra，Rack或纯Ruby应用程序引发的异常。
 # 任何未捕获的异常都会触发通知，该通知将发送到您的Bugsnag项目。
-gem "bugsnag", "~> 6.12"
-gem "uniform_notifier"
+# gem "bugsnag", "~> 6.12"
+# gem "uniform_notifier"
 
 # URL 友好的 ID，可以把一些不想暴露的url地址中的信息给使用id替代掉。
 gem 'friendly_id'
