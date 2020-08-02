@@ -76,9 +76,6 @@ gem 'seed-fu'
 # Kaminari是一个基于范围和引擎的、干净、强大、可自定义复杂条件的分页器。
 # gem 'kaminari', '~> 1.1.1'
 
-# 使用yaml文件去安全地配置Rails应用程序，并且可以将配置存储在系统环境变量
-gem 'figaro'
-
 # 上传组件
 # gem "carrierwave"
 

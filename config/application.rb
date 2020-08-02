@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module InitGems
+module Blog
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
@@ -46,7 +46,7 @@ module InitGems
 end
 
 # 获取redis的配置信息。
-read_config = YAML::load(ERB.new(IO.read('config/redis.yml')).result)
+read_config = YAML::load(File.open('config/redis.yml'))
 
 # 不使用hiredis，把.merge(:driver => :hiredis)去掉即可
 # REDIS_CONFIG = read_config[Rails.env].symbolize_keys
