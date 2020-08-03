@@ -84,7 +84,7 @@ gem 'seed-fu'
 
 # 前端ui框架bootstrap
 gem 'bootstrap', '~> 4.3.0'
-# gem 'webpacker'
+gem 'webpacker'
 
 # 更简单更强大的表单创建。
 # gem 'simple_form', '~> 4.0.0'
@@ -172,6 +172,8 @@ gem 'browser_warrior', '>= 0.8.0'
 # gem 'activeadmin'
 # 后台管理的前端UI
 # gem 'arctic_admin'
+# 更方便快捷的创建后台管理页面
+gem 'trestle'
 
 # 管理配置信息的库。
 # gem "rails-settings-cached", "~> 2.0"
