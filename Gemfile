@@ -126,6 +126,12 @@ gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-wechat-oauth2"
 
+# Oauth2 provider
+# gem 'doorkeeper'
+
+# 中国的省市县区的数据库
+# gem 'china_regions'
+
 # 使用JWT实现Token认证
 gem 'jwt'
 # 符合 JWT (JSON Web Token) 规范的认证 API
