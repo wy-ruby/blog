@@ -10,25 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_132125) do
+ActiveRecord::Schema.define(version: 2020_08_08_012948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-  end
 
   create_table "article_tags", force: :cascade do |t|
     t.bigint "article_id", comment: "文章id"
@@ -85,6 +71,17 @@ ActiveRecord::Schema.define(version: 2020_08_07_132125) do
     t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["discuss_type", "discuss_id"], name: "index_comments_on_discuss_type_and_discuss_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "operation_logs", force: :cascade do |t|
@@ -183,9 +180,34 @@ ActiveRecord::Schema.define(version: 2020_08_07_132125) do
     t.string "weibo", limit: 50, default: "", null: false, comment: "用户的微博"
     t.boolean "status", default: true, null: false, comment: "用户账户状态: false(冻结), true(正常)"
     t.datetime "last_update_time", comment: "用户上次更新博客时间"
+    t.string "encrypted_password", default: "", null: false, comment: "加密密码"
+    t.string "email", default: "", null: false, comment: "邮箱"
+    t.string "reset_password_token", comment: "重置密码token"
+    t.datetime "reset_password_sent_at", comment: "重置密码发送时间"
+    t.integer "sign_in_count", default: 0, null: false, comment: "登陆次数"
+    t.datetime "current_sign_in_at", comment: "本次登陆时间"
+    t.datetime "last_sign_in_at", comment: "上次登陆时间"
+    t.string "current_sign_in_ip", comment: "本次登陆ip地址"
+    t.string "last_sign_in_ip", limit: 25, comment: "上次登陆ip地址"
+    t.string "confirmation_token", comment: "确认时的token信息"
+    t.datetime "confirmed_at", comment: "确认时间"
+    t.datetime "confirmation_sent_at", comment: "确认信息发送时间"
+    t.string "unconfirmed_email", comment: "未点击确定的邮箱"
+    t.integer "failed_attempts", default: 0, null: false, comment: "失败次数"
+    t.string "unlock_token", comment: "解锁token"
+    t.datetime "locked_at", comment: "锁定时间"
+    t.datetime "remember_created_at", comment: "用户创建时间"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "provider", comment: "三方登录提供商"
     t.string "uid", comment: "授权用户的uid"
     t.string "image", comment: "授权用户的头像地址"
+    t.string "slug"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
     t.index ["user_group_id"], name: "index_users_on_user_group_id"
   end
 

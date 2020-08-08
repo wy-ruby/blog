@@ -166,9 +166,9 @@ gem 'browser_warrior', '>= 0.8.0'
 # gem "action-store"
 
 # 快速创建后台管理
-gem 'activeadmin'
+# gem 'activeadmin'
 # 后台管理的前端UI
-# gem 'rails_admin'
+gem 'rails_admin'
 # 更方便快捷的创建后台管理页面
 # gem 'trestle'
 
@@ -205,7 +205,7 @@ gem "rack-attack"
 # gem "uniform_notifier"
 
 # URL 友好的 ID，可以把一些不想暴露的url地址中的信息给使用id替代掉。
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.2.4'
 
 # 所见即所得编辑器
 gem 'ckeditor'

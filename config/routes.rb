@@ -93,7 +93,6 @@
 #                      root GET  /(:database)(.:format)                           pg_hero/home#index
 
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
   # 配置 simple_apm 的路由
   mount SimpleApm::Engine => "/apm"
 
