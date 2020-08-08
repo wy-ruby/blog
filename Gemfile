@@ -4,13 +4,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.2.4.3'
+gem 'rails', '~> 5.2.4'
 
-# Use mysql2 as the database for Active Record
-gem 'mysql2'
+# 使用pg数据库
+gem 'pg'
+# pg数据库的性能仪表板
+gem 'pghero'
+gem 'pg_query', '~> 1.2.0'
 
 # Use Puma as the app server
-gem 'puma', '>= 3.12.6'
+gem 'puma', '~> 3.12'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -69,12 +72,6 @@ gem 'redis-rack-cache'
 
 # 数据库初始数据相关。默认读取的是db/fixtures下的文件。
 gem 'seed-fu'
-
-# 能创造简单并且比较高级的搜索条件。
-# gem 'ransack', '~> 1.8.2'
-
-# Kaminari是一个基于范围和引擎的、干净、强大、可自定义复杂条件的分页器。
-# gem 'kaminari', '~> 1.1.1'
 
 # 上传组件
 # gem "carrierwave"
@@ -168,12 +165,21 @@ gem 'browser_warrior', '>= 0.8.0'
 # 赞、关注、收藏、屏蔽等功能的数据结构
 # gem "action-store"
 
-# 后台管理
-# gem 'activeadmin'
+# 快速创建后台管理
+gem 'activeadmin'
 # 后台管理的前端UI
-# gem 'arctic_admin'
+# gem 'rails_admin'
 # 更方便快捷的创建后台管理页面
-gem 'trestle'
+# gem 'trestle'
+
+# 能创造简单并且比较高级的搜索条件。
+gem 'ransack'
+
+# # Kaminari是一个基于范围和引擎的、干净、强大、可自定义复杂条件的分页器。
+gem 'kaminari'
+
+# 基于Redis的简单的Web请求性能监控/慢事务追踪工具
+gem 'simple_apm'
 
 # 管理配置信息的库。
 # gem "rails-settings-cached", "~> 2.0"

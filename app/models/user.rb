@@ -2,37 +2,27 @@
 #
 # Table name: users
 #
-#  id                                       :bigint           not null, primary key
-#  age(年龄)                                :string(255)
-#  confirmation_sent_at(确认信息发送时间)   :datetime
-#  confirmation_token(确认时的token信息)    :string(255)
-#  confirmed_at(确认时间)                   :datetime
-#  current_sign_in_at(本次登陆时间)         :datetime
-#  current_sign_in_ip(本次登陆ip地址)       :string(255)
-#  email(邮箱)                              :string(255)      default(""), not null
-#  encrypted_password(加密密码)             :string(255)      default(""), not null
-#  failed_attempts(失败次数)                :integer          default(0), not null
-#  last_sign_in_at(上次登陆时间)            :datetime
-#  last_sign_in_ip(上次登陆ip地址)          :string(255)
-#  locked_at(锁定时间)                      :datetime
-#  name(用户名)                             :string(255)
-#  password_digest(密码)                    :string(255)
-#  remember_created_at(用户创建时间)        :datetime
-#  reset_password_sent_at(重置密码发送时间) :datetime
-#  reset_password_token(重置密码token)      :string(255)
-#  sex(性别)                                :boolean
-#  sign_in_count(登陆次数)                  :integer          default(0), not null
-#  unconfirmed_email(未点击确定的邮箱)      :string(255)
-#  unlock_token(解锁token)                  :string(255)
-#  created_at                               :datetime         not null
-#  updated_at                               :datetime         not null
+#  id                                            :bigint           not null, primary key
+#  address(用户所在地)                           :string(100)      default(""), not null
+#  birthday(用户的生日)                          :integer
+#  description(用户的自我描述)                   :string           default(""), not null
+#  head_image_url(用户的头像路径)                :string           default(""), not null
+#  image(授权用户的头像地址)                     :string
+#  last_update_time(用户上次更新博客时间)        :datetime
+#  name(用户名)                                  :string
+#  phone(用户手机号)                             :string(11)
+#  provider(三方登录提供商)                      :string
+#  school(用户的学校)                            :string(100)      default(""), not null
+#  sex(用户性别: 1(男)，2(女))                   :integer
+#  status(用户账户状态: false(冻结), true(正常)) :boolean          default(TRUE), not null
+#  uid(授权用户的uid)                            :string
+#  wechat_image_url(用户的微信二维码)            :string           default(""), not null
+#  weibo(用户的微博)                             :string(50)       default(""), not null
+#  user_group_id(所属用户组)                     :bigint
 #
 # Indexes
 #
-#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_unlock_token          (unlock_token) UNIQUE
+#  index_users_on_user_group_id  (user_group_id)
 #
 
 class User < ApplicationRecord
@@ -67,6 +57,18 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :timeoutable, :confirmable, :lockable, :trackable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %w[github wechat]
+
+  # User 的关联关系
+  has_many :articles
+  has_many :secret_messages
+  has_many :comments
+  has_many :categories
+  has_many :system_messages
+  has_many :user_relations
+  has_many :visitors
+  has_one :blog_info
+  belongs_to :user_group
+  has_many :operation_logs, as: :operation
 
   # 处理omniauth的登录时初始化数据
   def self.from_omniauth(auth)

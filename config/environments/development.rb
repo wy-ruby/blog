@@ -120,7 +120,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # 配置 lograge 的支持。一般是在生产环境下配置的。日志是保存在 #{Rails.env}.log 中。
-  config.lograge.enabled = true
+  config.lograge.enabled = false
   # 可以添加自定义内容。
   config.lograge.custom_options = lambda do |event|
     { time: Time.now.strftime("%Y-%m-%d %H:%M:%S"), host: event.payload[:host]}
