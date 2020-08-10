@@ -174,7 +174,7 @@ gem 'browser_warrior', '>= 0.8.0'
 # 快速创建后台管理
 # gem 'activeadmin'
 # 后台管理的前端UI
-gem 'rails_admin'
+# gem 'rails_admin'
 # 更方便快捷的创建后台管理页面
 # gem 'trestle'
 

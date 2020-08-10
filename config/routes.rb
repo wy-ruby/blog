@@ -108,8 +108,6 @@ Rails.application.routes.draw do
   draw :api
   # 配置 +sidekiq+ 相关的路由
   draw :sidekiq
-  # 配置 +admin+ 相关的路由
-  draw :admin
 
   # 要想使用 http://localhost:3000/en/books（加载英语区域设置）和 http://localhost:3000/zh-CN/books（加载中文区域设置），我们
   # 可以使用前文提到的覆盖 default_url_options 方法的方式，通过 scope 方法设置路由：
