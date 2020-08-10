@@ -93,7 +93,6 @@ class User < ApplicationRecord
   has_many :system_messages
   has_many :user_relations
   has_many :visitors
-  belongs_to :role
   has_one :blog_info
   has_many :operation_logs, as: :operation
 

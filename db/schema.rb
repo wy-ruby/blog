@@ -142,14 +142,14 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
   end
 
   create_table "system_messages", force: :cascade do |t|
-    t.bigint "user_group_id", comment: "用户组id"
+    t.bigint "roles_id", comment: "如果消息类型是角色的话，需要添加上这个角色id"
     t.bigint "user_id", comment: "某个接受者的用户id"
-    t.integer "message_type", limit: 2, default: 1, null: false, comment: "系统消息的类型：1(代表所有用户), 2(用户)，3(用户组)"
+    t.integer "message_type", limit: 2, default: 1, null: false, comment: "系统消息的类型：1(所有用户), 2(单个用户)，3(某个角色的用户)"
     t.string "topic", limit: 50, default: "", null: false, comment: "系统消息的标题"
     t.string "content", default: "", null: false, comment: "系统消息的内容"
     t.integer "status", limit: 2, default: 1, null: false, comment: "消息状态：1(未读)，2(已读)"
     t.datetime "created_at", comment: "创建时间"
-    t.index ["user_group_id"], name: "index_system_messages_on_user_group_id"
+    t.index ["roles_id"], name: "index_system_messages_on_roles_id"
     t.index ["user_id"], name: "index_system_messages_on_user_id"
   end
 

@@ -19,6 +19,7 @@
 #  index_permissions_on_parent_id  (parent_id)
 #
 class Permission < ApplicationRecord
+  has_many :role_permissions
   has_many :roles, through: :role_permissions
   belongs_to :parent, class_name: "Permission"
   has_many :subordinates, class_name: "Permission", foreign_key: "parent_id"
