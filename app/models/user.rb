@@ -19,6 +19,7 @@
 #  last_sign_in_at(上次登陆时间)                 :datetime
 #  last_sign_in_ip(上次登陆ip地址)               :string(25)
 #  last_update_time(用户上次更新博客时间)        :datetime
+#  local(用户的语言偏好设置)                     :string(10)       default("zh-CN"), not null
 #  locked_at(锁定时间)                           :datetime
 #  name(用户名)                                  :string
 #  phone(用户手机号)                             :string(11)
@@ -29,7 +30,6 @@
 #  school(用户的学校)                            :string(100)      default(""), not null
 #  sex(用户性别: 1(男)，2(女))                   :integer
 #  sign_in_count(登陆次数)                       :integer          default(0), not null
-#  slug                                          :string
 #  status(用户账户状态: false(冻结), true(正常)) :boolean          default(TRUE), not null
 #  uid(授权用户的uid)                            :string
 #  unconfirmed_email(未点击确定的邮箱)           :string
@@ -38,20 +38,19 @@
 #  weibo(用户的微博)                             :string(50)       default(""), not null
 #  created_at                                    :datetime         not null
 #  updated_at                                    :datetime         not null
-#  user_group_id(所属用户组)                     :bigint
+#  roles_id(用户角色)                            :bigint
 #
 # Indexes
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_slug                  (slug) UNIQUE
+#  index_users_on_roles_id              (roles_id)
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
-#  index_users_on_user_group_id         (user_group_id)
 #
 
 class User < ApplicationRecord
-  # 使用rolify进行权限管理
+  # 这个是 rolify 中的一些方法的导入
   rolify
 
   # 在rails 3.0以上版本中，ActiveModel::SecurePassword就使用bcrypt密码验证。不过也需要在gemfile中引入 gem 'bcrypt'
@@ -94,6 +93,7 @@ class User < ApplicationRecord
   has_many :system_messages
   has_many :user_relations
   has_many :visitors
+  belongs_to :role
   has_one :blog_info
   has_many :operation_logs, as: :operation
 

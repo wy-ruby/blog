@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_022905) do
+ActiveRecord::Schema.define(version: 2020_08_10_113410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -73,26 +73,31 @@ ActiveRecord::Schema.define(version: 2020_08_10_022905) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string "slug", null: false
-    t.integer "sluggable_id", null: false
-    t.string "sluggable_type", limit: 50
-    t.string "scope"
-    t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
-  end
-
   create_table "operation_logs", force: :cascade do |t|
     t.string "operation_type"
     t.bigint "operation_id", comment: "多态关联中的操作对象的id和类型。"
     t.string "content", default: "", null: false, comment: "用户具体的操作内容"
     t.bigint "user_id", comment: "操作人"
+    t.string "url", limit: 300, default: "", null: false, comment: "操作的执行URL"
+    t.datetime "speed_time", null: false, comment: "消耗时间"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["operation_type", "operation_id"], name: "index_operation_logs_on_operation_type_and_operation_id"
     t.index ["user_id"], name: "index_operation_logs_on_user_id"
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string "name", limit: 20, default: "", null: false, comment: "权限名称"
+    t.bigint "parent_id", comment: "自连接中的父级id，代表父级权限的id"
+    t.string "url", limit: 300, default: "", null: false, comment: "权限的url"
+    t.integer "create_by", null: false, comment: "该权限的创建人"
+    t.string "icon", default: "", null: false, comment: "权限图标"
+    t.integer "permission_value", limit: 2, default: 0, null: false, comment: "该权限的权重，0最小255最大"
+    t.integer "status", limit: 2, default: 1, null: false, comment: "该权限的状态:0(禁用),1(正常)"
+    t.integer "sort", limit: 2, comment: "排序"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_permissions_on_parent_id"
   end
 
   create_table "pghero_query_stats", force: :cascade do |t|
@@ -106,14 +111,23 @@ ActiveRecord::Schema.define(version: 2020_08_10_022905) do
     t.index ["database", "captured_at"], name: "index_pghero_query_stats_on_database_and_captured_at"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name", comment: "权限名称"
-    t.string "resource_type"
-    t.bigint "resource_id", comment: "多态关联，生成对象的id和类型"
+  create_table "role_permissions", force: :cascade do |t|
+    t.bigint "roles_id", comment: "多对多关联中的角色id"
+    t.bigint "permissions_id", comment: "多对多关联中的权限id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+    t.index ["permissions_id"], name: "index_role_permissions_on_permissions_id"
+    t.index ["roles_id"], name: "index_role_permissions_on_roles_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", limit: 20, default: "", null: false, comment: "角色名称"
+    t.string "description", limit: 100, default: "", null: false, comment: "对该角色的描述"
+    t.integer "status", limit: 2, default: 1, null: false, comment: "角色的状态:0(不可用),1(可用)"
+    t.integer "sort", limit: 2, comment: "排序"
+    t.integer "is_default", limit: 2, default: 0, null: false, comment: "是否默认角色:0(否),1(是)"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "secret_messages", force: :cascade do |t|
@@ -145,20 +159,6 @@ ActiveRecord::Schema.define(version: 2020_08_10_022905) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_groups", force: :cascade do |t|
-    t.string "name", limit: 20, default: "", null: false, comment: "用户组名"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_groups_roles", id: false, force: :cascade do |t|
-    t.bigint "user_group_id", comment: "用户组id"
-    t.bigint "role_id", comment: "权限id"
-    t.index ["role_id"], name: "index_user_groups_roles_on_role_id"
-    t.index ["user_group_id", "role_id"], name: "index_user_groups_roles_on_user_group_id_and_role_id"
-    t.index ["user_group_id"], name: "index_user_groups_roles_on_user_group_id"
-  end
-
   create_table "user_relations", force: :cascade do |t|
     t.integer "attention_id", null: false, comment: "被关注者id"
     t.bigint "user_id", null: false, comment: "关注者id"
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_022905) do
     t.string "name", comment: "用户名"
     t.string "phone", limit: 11, comment: "用户手机号"
     t.integer "sex", limit: 2, comment: "用户性别: 1(男)，2(女)"
-    t.bigint "user_group_id", comment: "所属用户组"
+    t.bigint "roles_id", comment: "用户角色"
     t.string "address", limit: 100, default: "", null: false, comment: "用户所在地"
     t.string "description", default: "", null: false, comment: "用户的自我描述"
     t.string "head_image_url", default: "", null: false, comment: "用户的头像路径"
@@ -178,8 +178,12 @@ ActiveRecord::Schema.define(version: 2020_08_10_022905) do
     t.string "school", limit: 100, default: "", null: false, comment: "用户的学校"
     t.integer "birthday", comment: "用户的生日"
     t.string "weibo", limit: 50, default: "", null: false, comment: "用户的微博"
+    t.string "local", limit: 10, default: "zh-CN", null: false, comment: "用户的语言偏好设置"
     t.boolean "status", default: true, null: false, comment: "用户账户状态: false(冻结), true(正常)"
     t.datetime "last_update_time", comment: "用户上次更新博客时间"
+    t.string "provider", comment: "三方登录提供商"
+    t.string "uid", comment: "授权用户的uid"
+    t.string "image", comment: "授权用户的头像地址"
     t.string "encrypted_password", default: "", null: false, comment: "加密密码"
     t.string "email", default: "", null: false, comment: "邮箱"
     t.string "reset_password_token", comment: "重置密码token"
@@ -199,17 +203,19 @@ ActiveRecord::Schema.define(version: 2020_08_10_022905) do
     t.datetime "remember_created_at", comment: "用户创建时间"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider", comment: "三方登录提供商"
-    t.string "uid", comment: "授权用户的uid"
-    t.string "image", comment: "授权用户的头像地址"
-    t.string "slug"
-    t.string "local", limit: 10, default: "zh-CN", null: false, comment: "用户语言偏好"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["slug"], name: "index_users_on_slug", unique: true
+    t.index ["roles_id"], name: "index_users_on_roles_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-    t.index ["user_group_id"], name: "index_users_on_user_group_id"
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id", comment: "多对多关联中的用户的id"
+    t.bigint "role_id", comment: "多对多关联中的角色的id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   create_table "visitors", force: :cascade do |t|

@@ -2,27 +2,24 @@
 #
 # Table name: roles
 #
-#  id                                        :bigint           not null, primary key
-#  name(权限名称)                            :string
-#  resource_type                             :string
-#  created_at                                :datetime         not null
-#  updated_at                                :datetime         not null
-#  resource_id(多态关联，生成对象的id和类型) :bigint
-#
-# Indexes
-#
-#  index_roles_on_name_and_resource_type_and_resource_id  (name,resource_type,resource_id)
-#  index_roles_on_resource_type_and_resource_id           (resource_type,resource_id)
+#  id                                   :bigint           not null, primary key
+#  description(对该角色的描述)          :string(100)      default(""), not null
+#  is_default(是否默认角色:0(否),1(是)) :integer          default(0), not null
+#  name(角色名称)                       :string(20)       default(""), not null
+#  sort(排序)                           :integer
+#  status(角色的状态:0(不可用),1(可用)) :integer          default(1), not null
+#  created_at                           :datetime         not null
+#  updated_at                           :datetime         not null
 #
 class Role < ApplicationRecord
-  has_and_belongs_to_many :user, :join_table => :users_roles
-  belongs_to :resource, :polymorphic => true, :optional => true
+has_and_belongs_to_many :users, :join_table => :users_roles
+has_many :permissions, through: :role_permissions
 
-  validates :resource_type,
-            :inclusion => { :in => Rolify.resource_types },
-            :allow_nil => true
+validates :resource_type,
+          :inclusion => { :in => Rolify.resource_types },
+          :allow_nil => true
 
-  # rolify 的一些 scope 方法的导入
-  scopify
+# rolify中的一些scope的方法
+scopify
 
 end
