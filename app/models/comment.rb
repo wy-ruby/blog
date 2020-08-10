@@ -23,6 +23,6 @@ class Comment < ApplicationRecord
   belongs_to :article
   belongs_to :user
   belongs_to :discuss, polymorphic: true
-  has_many :comment, as: :discuss
+  has_many :comment, as: :discuss, foreign_key: 'discuss_id'
 
 end
