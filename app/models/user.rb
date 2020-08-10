@@ -51,9 +51,8 @@
 #
 
 class User < ApplicationRecord
-  # 使用 friendly_id 来隐藏真实用户名
-  extend FriendlyId
-  friendly_id :name, use: :slugged
+  # 使用rolify进行权限管理
+  rolify
 
   # 在rails 3.0以上版本中，ActiveModel::SecurePassword就使用bcrypt密码验证。不过也需要在gemfile中引入 gem 'bcrypt'
   # 需要在users表中添加 password_digest 字段，如果是password字段也是会报错的，只能是password_digest字段。
@@ -96,7 +95,6 @@ class User < ApplicationRecord
   has_many :user_relations
   has_many :visitors
   has_one :blog_info
-  belongs_to :user_group
   has_many :operation_logs, as: :operation
 
   # 处理omniauth的登录时初始化数据
@@ -121,4 +119,6 @@ class User < ApplicationRecord
       end
     end
   end
+
+
 end

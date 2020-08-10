@@ -33,7 +33,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[5.2]
       t.datetime :remember_created_at, comment: "用户创建时间"
 
       # Uncomment below if timestamps were not included in your original model.
-      t.timestamps null: false
+      t.timestamps
     end
 
     add_index :users, :email,                unique: true

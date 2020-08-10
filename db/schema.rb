@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_012948) do
+ActiveRecord::Schema.define(version: 2020_08_10_022905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_012948) do
     t.string "uid", comment: "授权用户的uid"
     t.string "image", comment: "授权用户的头像地址"
     t.string "slug"
+    t.string "local", limit: 10, default: "zh-CN", null: false, comment: "用户语言偏好"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

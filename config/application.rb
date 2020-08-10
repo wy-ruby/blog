@@ -26,8 +26,10 @@ module Blog
 
     # 配置i18n的默认语言
     config.i18n.default_locale = "zh-CN"
+    # 应用可用的区域设置白名单
+    config.i18n.available_locales = %w[en zh-CN]
 
-    # 添加一个中间件，这个是处理i18n的区域设置的时候，根据用户的语言偏好获取http首部。使用rack-contrib gem。
+    # 添加一个中间件，这个是处理i18n的区域设置的时候，根据用户的语言偏好获取http首部。是rack-contrib 这个gem提供的。
     config.middleware.use Rack::Locale
 
     # rails应用如果版本大于5.1默认使用这个，注释即可，否则需要启用。使用rack-attack gem。

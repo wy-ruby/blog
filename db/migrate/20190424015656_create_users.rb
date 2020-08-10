@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :school, limit: 100, null:false, default:"", comment: "用户的学校"
       t.integer :birthday, comment: "用户的生日"
       t.string :weibo, limit: 50, null:false, default:"", comment: "用户的微博"
+      t.string :local, limit: 10, null:false, default:"zh-CN", comment: "用户的语言偏好设置"
       t.boolean :status, null:false, default:true, comment: "用户账户状态: false(冻结), true(正常)"
       t.timestamp :last_update_time, comment: "用户上次更新博客时间"
     end

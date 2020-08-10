@@ -15,7 +15,7 @@
 #  index_roles_on_resource_type_and_resource_id           (resource_type,resource_id)
 #
 class Role < ApplicationRecord
-  has_and_belongs_to_many :user_groups, :join_table => :user_groups_roles
+  has_and_belongs_to_many :user, :join_table => :users_roles
   belongs_to :resource, :polymorphic => true, :optional => true
 
   validates :resource_type,
