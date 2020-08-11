@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "comment", default: "", null: false, comment: "评论内容"
+    t.string "content", default: "", null: false, comment: "评论内容"
     t.string "discuss_type"
     t.bigint "discuss_id", comment: "生成多态关联的评论对象的id和类型(type)，目前有对文章的评论和对评论的回复这两种类型。"
     t.string "ip", limit: 25, default: "", null: false, comment: "评论时用户的ip地址"

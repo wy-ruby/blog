@@ -3,7 +3,7 @@
 # Table name: comments
 #
 #  id                                                                                                        :bigint           not null, primary key
-#  comment(评论内容)                                                                                         :string           default(""), not null
+#  content(评论内容)                                                                                         :string           default(""), not null
 #  discuss_type                                                                                              :string
 #  ip(评论时用户的ip地址)                                                                                    :string(25)       default(""), not null
 #  created_at                                                                                                :datetime         not null

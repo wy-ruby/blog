@@ -1,7 +1,7 @@
 class CreateComments < ActiveRecord::Migration[5.2]
   def change
     create_table :comments do |t|
-      t.string :comment, null:false, default: "", comment: "评论内容"
+      t.string :content, null:false, default: "", comment: "评论内容"
       t.references :discuss, polymorphic: true, index:true,
                    comment:"生成多态关联的评论对象的id和类型(type)，目前有对文章的评论和对评论的回复这两种类型。"
       t.string :ip, limit: 25, null: false, default: "", comment: "评论时用户的ip地址"
