@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name, comment: "用户名"
       t.string :phone, limit: 11, unique: true, comment: "用户手机号"
       t.integer :sex, limit:1, comment: "用户性别: 1(男)，2(女)"
-      t.references :roles, index:true, comment: "用户角色"
+      t.references :role, index:true, comment: "用户角色"
       t.string :address, limit: 100, null:false, default:"", comment: "用户所在地"
       t.string :description, null:false, default:"", comment: "用户的自我描述"
       t.string :head_image_url, null:false, default:"", comment: "用户的头像路径"
