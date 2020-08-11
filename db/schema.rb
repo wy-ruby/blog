@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
     t.string "content", default: "", null: false, comment: "用户具体的操作内容"
     t.bigint "user_id", comment: "操作人"
     t.string "url", limit: 300, default: "", null: false, comment: "操作的执行URL"
-    t.datetime "speed_time", null: false, comment: "消耗时间"
+    t.integer "speed_time", comment: "消耗时间,单位毫秒(ms)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["operation_type", "operation_id"], name: "index_operation_logs_on_operation_type_and_operation_id"
