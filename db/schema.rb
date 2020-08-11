@@ -170,7 +170,6 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
     t.string "name", comment: "用户名"
     t.string "phone", limit: 11, comment: "用户手机号"
     t.integer "sex", limit: 2, comment: "用户性别: 1(男)，2(女)"
-    t.bigint "role_id", comment: "用户角色"
     t.string "address", limit: 100, default: "", null: false, comment: "用户所在地"
     t.string "description", default: "", null: false, comment: "用户的自我描述"
     t.string "head_image_url", default: "", null: false, comment: "用户的头像路径"
@@ -206,7 +205,6 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
