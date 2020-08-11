@@ -8,13 +8,13 @@
 #  status(消息状态：1(未读)，2(已读))                                        :integer          default(1), not null
 #  topic(系统消息的标题)                                                     :string(50)       default(""), not null
 #  created_at(创建时间)                                                      :datetime
-#  roles_id(如果消息类型是角色的话，需要添加上这个角色id)                    :bigint
+#  role_id(如果消息类型是角色的话，需要添加上这个角色id)                     :bigint
 #  user_id(某个接受者的用户id)                                               :bigint
 #
 # Indexes
 #
-#  index_system_messages_on_roles_id  (roles_id)
-#  index_system_messages_on_user_id   (user_id)
+#  index_system_messages_on_role_id  (role_id)
+#  index_system_messages_on_user_id  (user_id)
 #
 require 'test_helper'
 

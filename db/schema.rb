@@ -112,12 +112,12 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
   end
 
   create_table "role_permissions", force: :cascade do |t|
-    t.bigint "roles_id", comment: "多对多关联中的角色id"
-    t.bigint "permissions_id", comment: "多对多关联中的权限id"
+    t.bigint "role_id", comment: "多对多关联中的角色id"
+    t.bigint "permission_id", comment: "多对多关联中的权限id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["permissions_id"], name: "index_role_permissions_on_permissions_id"
-    t.index ["roles_id"], name: "index_role_permissions_on_roles_id"
+    t.index ["permission_id"], name: "index_role_permissions_on_permission_id"
+    t.index ["role_id"], name: "index_role_permissions_on_role_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -142,14 +142,14 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
   end
 
   create_table "system_messages", force: :cascade do |t|
-    t.bigint "roles_id", comment: "如果消息类型是角色的话，需要添加上这个角色id"
+    t.bigint "role_id", comment: "如果消息类型是角色的话，需要添加上这个角色id"
     t.bigint "user_id", comment: "某个接受者的用户id"
     t.integer "message_type", limit: 2, default: 1, null: false, comment: "系统消息的类型：1(所有用户), 2(单个用户)，3(某个角色的用户)"
     t.string "topic", limit: 50, default: "", null: false, comment: "系统消息的标题"
     t.string "content", default: "", null: false, comment: "系统消息的内容"
     t.integer "status", limit: 2, default: 1, null: false, comment: "消息状态：1(未读)，2(已读)"
     t.datetime "created_at", comment: "创建时间"
-    t.index ["roles_id"], name: "index_system_messages_on_roles_id"
+    t.index ["role_id"], name: "index_system_messages_on_role_id"
     t.index ["user_id"], name: "index_system_messages_on_user_id"
   end
 
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
     t.string "name", comment: "用户名"
     t.string "phone", limit: 11, comment: "用户手机号"
     t.integer "sex", limit: 2, comment: "用户性别: 1(男)，2(女)"
-    t.bigint "roles_id", comment: "用户角色"
+    t.bigint "role_id", comment: "用户角色"
     t.string "address", limit: 100, default: "", null: false, comment: "用户所在地"
     t.string "description", default: "", null: false, comment: "用户的自我描述"
     t.string "head_image_url", default: "", null: false, comment: "用户的头像路径"
@@ -206,7 +206,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_113410) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["roles_id"], name: "index_users_on_roles_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 

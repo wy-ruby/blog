@@ -38,14 +38,14 @@
 #  weibo(用户的微博)                             :string(50)       default(""), not null
 #  created_at                                    :datetime         not null
 #  updated_at                                    :datetime         not null
-#  roles_id(用户角色)                            :bigint
+#  role_id(用户角色)                             :bigint
 #
 # Indexes
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_roles_id              (roles_id)
+#  index_users_on_role_id               (role_id)
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 
