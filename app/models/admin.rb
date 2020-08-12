@@ -52,9 +52,7 @@ class Admin < ApplicationRecord
 
   # 实际上 user和admin模型是共用users表的。
   self.table_name = "users"
-
-  # def self.default_scope
-  #   where(roles.ids)
-  # end
+  # 使用默认scope以确定所选用户必定为管理员用户
+  default_scope {where(is_admin: true)}
 
 end
