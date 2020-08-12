@@ -32,7 +32,7 @@
 #             authenticated_root GET      /                                                                                        static_pages#home
 #           unauthenticated_root GET      /                                                                                        users/sessions#new
 #                    sidekiq_web          /sidekiq                                                                                 Sidekiq::Web
-#                   queue_status GET      /queue-status(.:format)                                                                  #<Proc:0x00007f804f3b1fd8@(eval):19>
+#                   queue_status GET      /queue-status(.:format)                                                                  #<Proc:0x00007f98d1fcb590@(eval):19>
 #              new_admin_session GET      /admins/login(.:format)                                                                  users/sessions#new
 #                  admin_session POST     /admins/login(.:format)                                                                  users/sessions#create
 #          destroy_admin_session DELETE   /admins/logout(.:format)                                                                 users/sessions#destroy
@@ -48,8 +48,6 @@
 #                                PUT      /admins(.:format)                                                                        users/registrations#update
 #                                DELETE   /admins(.:format)                                                                        users/registrations#destroy
 #                                POST     /admins(.:format)                                                                        users/registrations#create
-#                     admin_root GET      /                                                                                        admins/login#index
-#                    rails_admin          /admin                                                                                   RailsAdmin::Engine
 #                          users GET      (/:locale)/users(.:format)                                                               users#index {:locale=>/en|zh-CN/}
 #                                POST     (/:locale)/users(.:format)                                                               users#create {:locale=>/en|zh-CN/}
 #                       new_user GET      (/:locale)/users/new(.:format)                                                           users#new {:locale=>/en|zh-CN/}
@@ -102,18 +100,6 @@
 #              system_stats GET  (/:database)/system_stats(.:format)              redirect(301, system)
 #               query_stats GET  (/:database)/query_stats(.:format)               redirect(301, queries)
 #                      root GET  /(:database)(.:format)                           pg_hero/home#index
-#
-# Routes for RailsAdmin::Engine:
-#   dashboard GET         /                                      rails_admin/main#dashboard
-#       index GET|POST    /:model_name(.:format)                 rails_admin/main#index
-#         new GET|POST    /:model_name/new(.:format)             rails_admin/main#new
-#      export GET|POST    /:model_name/export(.:format)          rails_admin/main#export
-# bulk_delete POST|DELETE /:model_name/bulk_delete(.:format)     rails_admin/main#bulk_delete
-# bulk_action POST        /:model_name/bulk_action(.:format)     rails_admin/main#bulk_action
-#        show GET         /:model_name/:id(.:format)             rails_admin/main#show
-#        edit GET|PUT     /:model_name/:id/edit(.:format)        rails_admin/main#edit
-#      delete GET|DELETE  /:model_name/:id/delete(.:format)      rails_admin/main#delete
-# show_in_app GET         /:model_name/:id/show_in_app(.:format) rails_admin/main#show_in_app
 
 Rails.application.routes.draw do
   # 配置 simple_apm 的路由
@@ -125,12 +111,14 @@ Rails.application.routes.draw do
   def draw(routes_name)
     instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
   end
-  # 配置 +devise+ 相关的路由
+  # 配置 +devise+ 前台相关的路由
   draw :devise
   # 配置 +api+ 相关的路由
   draw :api
   # 配置 +sidekiq+ 相关的路由
   draw :sidekiq
+  # 配置 +admin+ 相关的路由
+  draw :admin
 
   # 要想使用 http://localhost:3000/en/books（加载英语区域设置）和 http://localhost:3000/zh-CN/books（加载中文区域设置），我们
   # 可以使用前文提到的覆盖 default_url_options 方法的方式，通过 scope 方法设置路由：
