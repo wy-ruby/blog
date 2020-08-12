@@ -1,12 +1,6 @@
 # == Route Map
 #
 #                         Prefix Verb     URI Pattern                                                                              Controller#Action
-#                     admin_root GET      /admin(.:format)                                                                         admin/dashboard#index
-#                admin_dashboard GET      /admin/dashboard(.:format)                                                               admin/dashboard#index
-#                 admin_comments GET      /admin/comments(.:format)                                                                admin/comments#index
-#                                POST     /admin/comments(.:format)                                                                admin/comments#create
-#                  admin_comment GET      /admin/comments/:id(.:format)                                                            admin/comments#show
-#                                DELETE   /admin/comments/:id(.:format)                                                            admin/comments#destroy
 #                     simple_apm          /apm                                                                                     SimpleApm::Engine
 #                        pg_hero          /pghero                                                                                  PgHero::Engine
 #               new_user_session GET      /users/login(.:format)                                                                   users/sessions#new
@@ -37,16 +31,33 @@
 #                   users_logout GET      /users/logout(.:format)                                                                  users/sessions#destroy
 #             authenticated_root GET      /                                                                                        static_pages#home
 #           unauthenticated_root GET      /                                                                                        users/sessions#new
-#                          users GET      /users(.:format)                                                                         users#index
-#                                POST     /users(.:format)                                                                         users#create
-#                       new_user GET      /users/new(.:format)                                                                     users#new
-#                      edit_user GET      /users/:id/edit(.:format)                                                                users#edit
-#                           user GET      /users/:id(.:format)                                                                     users#show
-#                                PATCH    /users/:id(.:format)                                                                     users#update
-#                                PUT      /users/:id(.:format)                                                                     users#update
-#                                DELETE   /users/:id(.:format)                                                                     users#destroy
 #                    sidekiq_web          /sidekiq                                                                                 Sidekiq::Web
-#                   queue_status GET      /queue-status(.:format)                                                                  #<Proc:0x00007f8c33c050f0@(eval):19>
+#                   queue_status GET      /queue-status(.:format)                                                                  #<Proc:0x00007f804f3b1fd8@(eval):19>
+#              new_admin_session GET      /admins/login(.:format)                                                                  users/sessions#new
+#                  admin_session POST     /admins/login(.:format)                                                                  users/sessions#create
+#          destroy_admin_session DELETE   /admins/logout(.:format)                                                                 users/sessions#destroy
+#             new_admin_password GET      /admins/password/new(.:format)                                                           users/passwords#new
+#            edit_admin_password GET      /admins/password/edit(.:format)                                                          users/passwords#edit
+#                 admin_password PATCH    /admins/password(.:format)                                                               users/passwords#update
+#                                PUT      /admins/password(.:format)                                                               users/passwords#update
+#                                POST     /admins/password(.:format)                                                               users/passwords#create
+#      cancel_admin_registration GET      /admins/cancel(.:format)                                                                 users/registrations#cancel
+#         new_admin_registration GET      /admins/register(.:format)                                                               users/registrations#new
+#        edit_admin_registration GET      /admins/edit(.:format)                                                                   users/registrations#edit
+#             admin_registration PATCH    /admins(.:format)                                                                        users/registrations#update
+#                                PUT      /admins(.:format)                                                                        users/registrations#update
+#                                DELETE   /admins(.:format)                                                                        users/registrations#destroy
+#                                POST     /admins(.:format)                                                                        users/registrations#create
+#                     admin_root GET      /                                                                                        admins/login#index
+#                    rails_admin          /admin                                                                                   RailsAdmin::Engine
+#                          users GET      (/:locale)/users(.:format)                                                               users#index {:locale=>/en|zh-CN/}
+#                                POST     (/:locale)/users(.:format)                                                               users#create {:locale=>/en|zh-CN/}
+#                       new_user GET      (/:locale)/users/new(.:format)                                                           users#new {:locale=>/en|zh-CN/}
+#                      edit_user GET      (/:locale)/users/:id/edit(.:format)                                                      users#edit {:locale=>/en|zh-CN/}
+#                           user GET      (/:locale)/users/:id(.:format)                                                           users#show {:locale=>/en|zh-CN/}
+#                                PATCH    (/:locale)/users/:id(.:format)                                                           users#update {:locale=>/en|zh-CN/}
+#                                PUT      (/:locale)/users/:id(.:format)                                                           users#update {:locale=>/en|zh-CN/}
+#                                DELETE   (/:locale)/users/:id(.:format)                                                           users#destroy {:locale=>/en|zh-CN/}
 #                                GET      /*unmatched_route(.:format)                                                              application#route_not_found
 #             rails_service_blob GET      /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 #      rails_blob_representation GET      /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
@@ -91,6 +102,18 @@
 #              system_stats GET  (/:database)/system_stats(.:format)              redirect(301, system)
 #               query_stats GET  (/:database)/query_stats(.:format)               redirect(301, queries)
 #                      root GET  /(:database)(.:format)                           pg_hero/home#index
+#
+# Routes for RailsAdmin::Engine:
+#   dashboard GET         /                                      rails_admin/main#dashboard
+#       index GET|POST    /:model_name(.:format)                 rails_admin/main#index
+#         new GET|POST    /:model_name/new(.:format)             rails_admin/main#new
+#      export GET|POST    /:model_name/export(.:format)          rails_admin/main#export
+# bulk_delete POST|DELETE /:model_name/bulk_delete(.:format)     rails_admin/main#bulk_delete
+# bulk_action POST        /:model_name/bulk_action(.:format)     rails_admin/main#bulk_action
+#        show GET         /:model_name/:id(.:format)             rails_admin/main#show
+#        edit GET|PUT     /:model_name/:id/edit(.:format)        rails_admin/main#edit
+#      delete GET|DELETE  /:model_name/:id/delete(.:format)      rails_admin/main#delete
+# show_in_app GET         /:model_name/:id/show_in_app(.:format) rails_admin/main#show_in_app
 
 Rails.application.routes.draw do
   # 配置 simple_apm 的路由

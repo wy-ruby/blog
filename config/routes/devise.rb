@@ -10,7 +10,7 @@ devise_for :users, module: :users, path_names: {
 devise_scope :user do
   get 'users/logout', to: "users/sessions#destroy"
   # 登录后的主页变成了 static_pages#home
-  authenticated :user do
+  authenticated do
     root 'static_pages#home', as: :authenticated_root
   end
 

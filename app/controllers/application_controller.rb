@@ -86,4 +86,14 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "You are not authorized to perform this action."
       redirect_to(request.referrer || root_path)
     end
+
+    # devise的退出登录后的页面
+    def after_sign_out_path_for(resource_or_scope)
+      if resource_or_scope == :user
+        unauthenticated_root_path
+      # elsif resource_or_scope == :admin
+      #   rails_admin_path
+      end
+    end
+
 end

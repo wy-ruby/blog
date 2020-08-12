@@ -94,6 +94,8 @@ class User < ApplicationRecord
   has_one :blog_info
   has_many :operation_logs, as: :operation
 
+  default_scope {where(:is_admin => false)}
+
   # 处理omniauth的登录时初始化数据
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
