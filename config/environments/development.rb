@@ -120,17 +120,17 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # 配置 lograge 的支持。一般是在生产环境下配置的。日志是保存在 #{Rails.env}.log 中。
-  config.lograge.enabled = false
+  # config.lograge.enabled = false
   # 可以添加自定义内容。
-  config.lograge.custom_options = lambda do |event|
-    { time: Time.now.strftime("%Y-%m-%d %H:%M:%S"), host: event.payload[:host]}
-  end
+  # config.lograge.custom_options = lambda do |event|
+  #   { time: Time.now.strftime("%Y-%m-%d %H:%M:%S"), host: event.payload[:host]}
+  # end
   # 可以添加一个钩子以直接访问控制器方法（例如request和current_user）。 该哈希将自动合并到日志数据中。
-  config.lograge.custom_payload do |controller|
-    {
-        protocol: controller.request.protocol.match(/([a-zA-Z]*)/)[0].to_s
-    }
-  end
+  # config.lograge.custom_payload do |controller|
+  #   {
+  #       protocol: controller.request.protocol.match(/([a-zA-Z]*)/)[0].to_s
+  #   }
+  # end
   # 保持rails原本的日志信息
   # config.lograge.keep_original_rails_log = true
   # config.lograge.logger = ActiveSupport::Logger.new "#{Rails.root}/log/lograge_#{Rails.env}.log"
@@ -144,7 +144,7 @@ Rails.application.configure do
 
   # Lograge支持多种输出格式。 最常见的是上述默认Lograge键值格式。 另外，您还可以生成Logstash使用的json_event格式的JSON日志。
   # 使用logstash输出时，需要添加  gem logstash-event
-  config.lograge.formatter = Lograge::Formatters::Logstash.new
+  # config.lograge.formatter = Lograge::Formatters::Logstash.new
   # 可用的日志格式有：
   # Lograge::Formatters::Lines.new
   # Lograge::Formatters::Cee.new

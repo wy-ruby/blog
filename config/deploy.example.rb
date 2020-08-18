@@ -11,15 +11,15 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 append :linked_files, 'config/database.yml', 'config/config.yml', 'config/redis.yml', 'config/master.key'
 
 # 服务器上的ruby版本以及gemset名
-@rvm_version = '2.5.1@init_gems'
+@rvm_version = '2.5.1@blog'
 
 # 项目仓库配置
-@project_name = 'init_gems'
+@project_name = 'blog'
 @git_url = 'git@github.com:xxx'
 @repo_url = "#{@git_url}/#{@project_name}.git"
 
 # 服务器上部署的路径配置
-@app_dir = 'init_gems'
+@app_dir = 'blog'
 @complete_app_dir = "/home/username/#{@app_dir}"
 
 # 输入要发布的分支

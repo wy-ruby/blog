@@ -61,16 +61,16 @@ append :linked_files, 'config/database.yml', 'config/application.yml', 'config/r
 
 # 服务器上的ruby版本以及gemset的名字，如果不在服务器上配置gemset的话，@gemset_name可为空字符串。
 @ruby_version = '2.5.1'
-@gemset_name = 'init_gems'
+@gemset_name = 'blog'
 
 # 项目仓库配置
-@project_name = 'init_gems'
+@project_name = 'blog'
 @git_url = 'git@github.com:wy-ruby'
 @repo_url = "#{@git_url}/#{@project_name}.git"
 
 # 服务器上部署的路径配置
 # 该项一般配置在config/deploy下的环境中
-set :application, 'init_gems'
+set :application, 'blog'
 @complete_app_dir = "/home/live/#{fetch(:application)}"
 
 # 输入要发布的分支

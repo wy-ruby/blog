@@ -39,5 +39,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require cable
+//= require static_pages
+//= require users
 //= require_self
-//= require_tree .

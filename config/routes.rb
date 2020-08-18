@@ -3,6 +3,7 @@
 #                         Prefix Verb     URI Pattern                                                                              Controller#Action
 #                     simple_apm          /apm                                                                                     SimpleApm::Engine
 #                        pg_hero          /pghero                                                                                  PgHero::Engine
+#           unauthenticated_root GET      /                                                                                        users/sessions#new
 #               new_user_session GET      /users/login(.:format)                                                                   users/sessions#new
 #                   user_session POST     /users/login(.:format)                                                                   users/sessions#create
 #           destroy_user_session DELETE   /users/logout(.:format)                                                                  users/sessions#destroy
@@ -28,26 +29,32 @@
 #                new_user_unlock GET      /users/unlock/new(.:format)                                                              users/unlocks#new
 #                    user_unlock GET      /users/unlock(.:format)                                                                  users/unlocks#show
 #                                POST     /users/unlock(.:format)                                                                  users/unlocks#create
-#                   users_logout GET      /users/logout(.:format)                                                                  users/sessions#destroy
-#             authenticated_root GET      /                                                                                        static_pages#home
-#           unauthenticated_root GET      /                                                                                        users/sessions#new
 #                    sidekiq_web          /sidekiq                                                                                 Sidekiq::Web
-#                   queue_status GET      /queue-status(.:format)                                                                  #<Proc:0x00007f98d1fcb590@(eval):19>
-#              new_admin_session GET      /admins/login(.:format)                                                                  users/sessions#new
-#                  admin_session POST     /admins/login(.:format)                                                                  users/sessions#create
-#          destroy_admin_session DELETE   /admins/logout(.:format)                                                                 users/sessions#destroy
-#             new_admin_password GET      /admins/password/new(.:format)                                                           users/passwords#new
-#            edit_admin_password GET      /admins/password/edit(.:format)                                                          users/passwords#edit
-#                 admin_password PATCH    /admins/password(.:format)                                                               users/passwords#update
-#                                PUT      /admins/password(.:format)                                                               users/passwords#update
-#                                POST     /admins/password(.:format)                                                               users/passwords#create
-#      cancel_admin_registration GET      /admins/cancel(.:format)                                                                 users/registrations#cancel
-#         new_admin_registration GET      /admins/register(.:format)                                                               users/registrations#new
-#        edit_admin_registration GET      /admins/edit(.:format)                                                                   users/registrations#edit
-#             admin_registration PATCH    /admins(.:format)                                                                        users/registrations#update
-#                                PUT      /admins(.:format)                                                                        users/registrations#update
-#                                DELETE   /admins(.:format)                                                                        users/registrations#destroy
-#                                POST     /admins(.:format)                                                                        users/registrations#create
+#                   queue_status GET      /queue-status(.:format)                                                                  #<Proc:0x00007f955ed5a9d0@(eval):19>
+#                 admin_articles GET      /admin/articles(.:format)                                                                admin/articles#index
+#                                POST     /admin/articles(.:format)                                                                admin/articles#create
+#              new_admin_article GET      /admin/articles/new(.:format)                                                            admin/articles#new
+#             edit_admin_article GET      /admin/articles/:id/edit(.:format)                                                       admin/articles#edit
+#                  admin_article GET      /admin/articles/:id(.:format)                                                            admin/articles#show
+#                                PATCH    /admin/articles/:id(.:format)                                                            admin/articles#update
+#                                PUT      /admin/articles/:id(.:format)                                                            admin/articles#update
+#                                DELETE   /admin/articles/:id(.:format)                                                            admin/articles#destroy
+#              new_admin_session GET      /admin/login(.:format)                                                                   devise/sessions#new
+#                  admin_session POST     /admin/login(.:format)                                                                   devise/sessions#create
+#          destroy_admin_session DELETE   /admin/logout(.:format)                                                                  devise/sessions#destroy
+#             new_admin_password GET      /admin/password/new(.:format)                                                            devise/passwords#new
+#            edit_admin_password GET      /admin/password/edit(.:format)                                                           devise/passwords#edit
+#                 admin_password PATCH    /admin/password(.:format)                                                                devise/passwords#update
+#                                PUT      /admin/password(.:format)                                                                devise/passwords#update
+#                                POST     /admin/password(.:format)                                                                devise/passwords#create
+#      cancel_admin_registration GET      /admin/cancel(.:format)                                                                  devise/registrations#cancel
+#         new_admin_registration GET      /admin/register(.:format)                                                                devise/registrations#new
+#        edit_admin_registration GET      /admin/edit(.:format)                                                                    devise/registrations#edit
+#             admin_registration PATCH    /admin(.:format)                                                                         devise/registrations#update
+#                                PUT      /admin(.:format)                                                                         devise/registrations#update
+#                                DELETE   /admin(.:format)                                                                         devise/registrations#destroy
+#                                POST     /admin(.:format)                                                                         devise/registrations#create
+#                     admin_root GET      /admin(.:format)                                                                         devise/sessions#new
 #                          users GET      (/:locale)/users(.:format)                                                               users#index {:locale=>/en|zh-CN/}
 #                                POST     (/:locale)/users(.:format)                                                               users#create {:locale=>/en|zh-CN/}
 #                       new_user GET      (/:locale)/users/new(.:format)                                                           users#new {:locale=>/en|zh-CN/}
@@ -56,7 +63,7 @@
 #                                PATCH    (/:locale)/users/:id(.:format)                                                           users#update {:locale=>/en|zh-CN/}
 #                                PUT      (/:locale)/users/:id(.:format)                                                           users#update {:locale=>/en|zh-CN/}
 #                                DELETE   (/:locale)/users/:id(.:format)                                                           users#destroy {:locale=>/en|zh-CN/}
-#                                GET      /*unmatched_route(.:format)                                                              application#route_not_found
+#                      not_found GET      /*unmatched_route(.:format)                                                              application#route_not_found
 #             rails_service_blob GET      /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 #      rails_blob_representation GET      /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
 #             rails_disk_service GET      /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
@@ -127,5 +134,5 @@ Rails.application.routes.draw do
   end
 
   # 匹配未定义的路由到 application下的route_not_found 方法中。
-  get '*unmatched_route', to: 'application#route_not_found'
+  get '*unmatched_route', to: 'application#route_not_found', as: :not_found
 end

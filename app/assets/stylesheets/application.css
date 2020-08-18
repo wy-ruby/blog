@@ -14,6 +14,8 @@
  * require_tree . 是把当前目录下所有的css文件(不包含.scss等非.css格式的文件，是因为在config/manifest配置了格式)都引入进来。
  *
  *
- *= require_tree .
+ *= require scaffolds
+ *= require users
+ *= require static_pages
  *= require_self
  */

@@ -10,13 +10,13 @@ base: &base
 
 development:
   <<: *base
-  database: init_gems_dev
+  database: blog_dev
 
 
 production:
   <<: *base
-  database: init_gems
+  database: blog
 
 test:
   <<: *base
-  database: init_gems_test
+  database: blog_test
