@@ -17,6 +17,5 @@
 #
 FactoryBot.define do
   factory :secret_message do
-    
   end
 end

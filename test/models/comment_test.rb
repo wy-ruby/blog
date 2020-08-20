@@ -19,7 +19,7 @@
 #  index_comments_on_discuss_type_and_discuss_id  (discuss_type,discuss_id)
 #  index_comments_on_user_id                      (user_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class CommentTest < ActiveSupport::TestCase
   # test "the truth" do

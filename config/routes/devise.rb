@@ -7,13 +7,13 @@ devise_scope :user do
   get "users/logout", to: "users/sessions#destroy"
   # 未登录的话就跳转到登录首页，也就是users/session#new
   unauthenticated do
-    root 'users/sessions#new', as: :unauthenticated_root
+    root "users/sessions#new", as: :unauthenticated_root
   end
 end
 # 查找用户的命名空间，默认是使用devise/sessions, devise/registrations的控制器，这里可以通过module选项修改成users。
 # 此时就是使用users/sessions, users/registrations作为默认控制器了。
 devise_for :users, module: :users, path_names: {
-    sign_in:  'login',
-    sign_out: 'logout',
-    sign_up:  'register'
+  sign_in: "login",
+  sign_out: "logout",
+  sign_up: "register"
 }

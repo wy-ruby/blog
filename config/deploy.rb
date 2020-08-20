@@ -47,37 +47,37 @@
 #
 #
 
-
-lock '~> 3.11.0'
+lock "~> 3.11.0"
 
 # 部署后，在shared文件夹中创建下列这些文件夹，并把文件夹软链接到rails对应的目录中去。可用于永久目录。
 # .bundle 文件也是会被设置在shared文件夹下的，该目录中有一个配置文件，配置所有的gem包的存放位置的，存放目录一般是shared/bundle/ruby/2.3.0/gems
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle",
+       ".bundle", "public/system", "public/uploads"
 # 在部署期间，列出的文件将从应用程序的共享文件夹(shared)中链接到每个发布目录。可用于持久性配置文件，如database.yml等文件。
 # 注意这里rails是5.2版本的，从这个版本开始，config/secrets.yml变成了config/master.key，即低于5.2版本的话要引入的是secrets.yml,否则会报错。
 # 注意这些手动添加的配置中需要有对应的内容，否则也会报错。
 # 把定时任务的schedule.rb文件加入是为了更新定时任务的时候不用执行发布即可。
-append :linked_files, 'config/database.yml', 'config/application.yml', 'config/redis.yml', 'config/master.key', 'config/schedule.rb', 'config/sidekiq.yml'
+append :linked_files, "config/database.yml", "config/application.yml", "config/redis.yml",
+       "config/master.key", "config/schedule.rb", "config/sidekiq.yml"
 
 # 服务器上的ruby版本以及gemset的名字，如果不在服务器上配置gemset的话，@gemset_name可为空字符串。
-@ruby_version = '2.5.1'
-@gemset_name = 'blog'
+@ruby_version = "2.5.1"
+@gemset_name = "blog"
 
 # 项目仓库配置
-@project_name = 'blog'
-@git_url = 'git@github.com:wy-ruby'
+@project_name = "blog"
+@git_url = "git@github.com:wy-ruby"
 @repo_url = "#{@git_url}/#{@project_name}.git"
 
 # 服务器上部署的路径配置
 # 该项一般配置在config/deploy下的环境中
-set :application, 'blog'
+set :application, "blog"
 @complete_app_dir = "/home/live/#{fetch(:application)}"
 
 # 输入要发布的分支
 # ask(:use_branch, 'master', echo: true)
 # @branch = fetch(:use_branch)
-@branch = 'develop'
-
+@branch = "develop"
 
 # capistrano这个gem本身的参数设置,还包括上面配置的:application以及:linked_dirs和:linked_files这两个数组。
 # # 部署的服务器的路径。默认是 { "/var/www/#{fetch(:application)}" }
@@ -96,11 +96,11 @@ set :format, :pretty
 # 保留最近多少次的部署，在服务器上是release文件夹中存在多少个对应的源码的文件夹。
 set :keep_releases, 5
 # 设置部署的服务器端的共享文件夹目录名。默认: shared
-set :shared_directory, 'shared'
+set :shared_directory, "shared"
 # 设置部署的服务器端的发布的文件夹目录名。默认: releases
-set :releases_directory, 'releases'
+set :releases_directory, "releases"
 # 设置指向当前最新成功部署发布文件夹的当前链接的名称。默认: current
-set :current_directory, 'current'
+set :current_directory, "current"
 # 配置源码管理工具。目前支持 :git 、:hg 、 :svn，默认是：git
 # set :scm, :git
 # capistrano这个gem本身的参数设置，结束。
@@ -112,16 +112,15 @@ set :current_directory, 'current'
 # set :filter, :roles => %w{app web}
 # capistrano这个gem本身的参数设置。结束
 
-
 # 在capistrano-rails中的配置。
 # 设置release的目录格式
-set :release_name, Time.now.strftime('%Y%m%d%H%M%S')
+set :release_name, Time.now.strftime("%Y%m%d%H%M%S")
 # 格式化部署的时候显示的工具,设置其颜色以及保存的日志目录和字符宽度。在3.5以上的版本中 默认的
-set :format_options, color: true, truncate: 80, log_file: 'log/capistrano.log', command_output: true
+set :format_options, color: true, truncate: 80, log_file: "log/capistrano.log", command_output: true
 # 如果db/migrate文件没有改变就跳过
 set :conditionally_migrate, true
 # 配置assets的目录，压缩编译静态文件在该配置下的目录进行。
-set :assets_manifests, ['app/assets/config/manifest.js']
+set :assets_manifests, ["app/assets/config/manifest.js"]
 # 配置assets:precompile task中的RAILS_GROUPS的环境变量的值。
 # set :rails_assets_groups, :assets
 # 虽然迁移一般是针对数据库的，但是在rails中数据库的迁移和rails框架密切相关，因此这里设置为应用 :app，而不是 :db
@@ -131,11 +130,9 @@ set :migration_role, :app
 # 设置编译的静态资源角色
 set :assets_roles, %i[web app]
 
-
 # 配置whenever。capistrano3版本及以上引入whenever的时候带上该命令是可以执行whenever -i的，即更新crontab的配置。
 set :whenever_roles, %i[db app]
-set :whenever_load_file, -> { File.join(release_path, 'config', 'schedule.rb') }
-
+set :whenever_load_file, -> { File.join(release_path, "config", "schedule.rb") }
 
 # 配置sidekiq,这里不需要去设置sidekiq的启动或者重启，在capistrano_sidekiq中已经自动执行了。
 set :sidekiq_config, "#{shared_path}/config/sidekiq.yml"
@@ -159,8 +156,8 @@ set :nginx_sites_enabled_path, "/etc/nginx/conf.d"
 set :nginx_server_name, "localhost"
 
 # 配置nginx权限角色，默认是:web，可以自定义。
-set :puma_nginx, [:web, :app]
-#配置最小及最大线程数
+set :puma_nginx, %(web app)
+# 配置最小及最大线程数
 set :puma_threads, [0, 16]
 # 要运行多少工作进程。通常设置为到可用内核的数量。
 set :puma_workers, 2
@@ -170,11 +167,11 @@ set :puma_conf, "#{shared_path}/config/puma.rb"
 # 建议使用tcp形式的，unix的可能会在部分服务器上出一定的问题(测试有报过ActionController::InvalidAuthenticityToken错误)。
 set :puma_bind, "tcp://0.0.0.0:8081"
 # 配置使用的角色
-set :puma_role, [:app, :web]
+set :puma_role, %i[app web]
 
 # 配置rvm1-capistrano3 如果在服务器上没有安装rvm以及ruby可以通过这个gem自动配置安装。
 # 可以自动创建gemset
-set :rvm1_ruby_version, @ruby_version + (@gemset_name.empty? ? '' : "@#{@gemset_name}")
+set :rvm1_ruby_version, @ruby_version + (@gemset_name.empty? ? "" : "@#{@gemset_name}")
 # 配置rvm-auto.sh文件所在的目录
 set :rvm1_auto_script_path, File.expand_path("../", fetch(:deploy_to))
 # 可以自动安装rvm
@@ -182,28 +179,26 @@ set :rvm1_auto_script_path, File.expand_path("../", fetch(:deploy_to))
 # 可以安装ruby,安装的ruby版本是rvm1_ruby_version中配置的版本。
 # before 'deploy', 'rvm1:install:ruby'
 
-
 # 执行db/fixtures/*下的任务
 # seed文件是位于以下目录： {Rails.root}/db/fixtures 或者 #{Rails.root}/db/fixtures/#{Rails.env}
-before 'deploy:publishing', 'db:seed_fu'
-
+before "deploy:publishing", "db:seed_fu"
 
 # 等发布完成之后把那些没有用到的gem给删除了,这个建议等删除的gem比较多的话再用。
 # after 'deploy:published', 'bundler:clean'
 
 # 部署完成后重启puma。
-after 'deploy:publishing', 'puma:restart'
+after "deploy:publishing", "puma:restart"
 # 第一次部署的时候需要执行的内容
-before 'deploy', 'deploy:first_deploy'
+before "deploy", "deploy:first_deploy"
 # 在第一次部署的时候,用来创建数据库，如果不是第一次部署的话不会执行任何操作。
-before 'deploy:updated', 'deploy:create_database'
+before "deploy:updated", "deploy:create_database"
 
 namespace :deploy do
   # 如果是第一次部署的话需要执行的操作
   task :first_deploy do
     on roles(:all) do
       # 如果服务器上根本没有要部署的这个目录的话，就可以确定是第一次部署。如果还没有部署之前就创建该目录的话需要删除。
-      if test ("[ ! -d #{fetch(:deploy_to)} ]")
+      if test "[ ! -d #{fetch(:deploy_to)} ]"
         invoke "first_deploy:init"
       else
         # 把配置文件在每次发布的时候都上传一下
@@ -223,10 +218,10 @@ namespace :deploy do
   # with是设置变量。`fetch(:rails_env)` 读取配置中的 rails_env 变量
   task :create_database do
     on roles(:db) do
-      if test ("[ ! -d #{fetch(:deploy_to)} ]")
+      if test "[ ! -d #{fetch(:deploy_to)} ]"
         within release_path do
           with rails_env: fetch(:rails_env) do
-            execute :rake, 'db:create'
+            execute :rake, "db:create"
           end
         end
       end

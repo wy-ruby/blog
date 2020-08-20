@@ -6,8 +6,8 @@
 #
 # 详细的配置方法可以看 https://github.com/puma/puma/blob/master/examples/config.rb
 
-if ENV['RAILS_ENV'] == 'production'
-  app_root = '/home/username/yourapp'
+if ENV["RAILS_ENV"] == "production"
+  app_root = "/home/username/yourapp"
   pidfile "#{app_root}/tmp/pids/puma.pid"
   state_path "#{app_root}/tmp/pids/puma.state"
   bind "unix://#{app_root}/tmp/sockets/puma.sock"
@@ -28,7 +28,7 @@ if ENV['RAILS_ENV'] == 'production'
   # 标准输出日志以及错误日志
   stdout_redirect "#{app_root}/log/puma_access.log", "#{app_root}/log/puma_error.log", true
 else
-  root_path = '/home/username/yourapp'
+  root_path = "/home/username/yourapp"
 
   # pid保存的目录
   pidfile "#{root_path}/tmp/pids/puma.pid"
@@ -36,5 +36,5 @@ else
   # 服务器状态
   state_path "#{root_path}/tmp/pids/puma.state"
 
-  port        ENV.fetch("PORT") { 3000 }
+  port ENV.fetch("PORT") { 3000 }
 end

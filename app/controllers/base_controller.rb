@@ -9,9 +9,8 @@ class BaseController < ApplicationController
   end
 
   def set_locale
-    binding.pry
     I18n.locale = extract_locale_from_path || extract_locale_from_tld || extract_locale_from_subdomain ||
-        extract_locale_from_header || current_user.try(:locale) || I18n.default_locale
+                  extract_locale_from_header || current_user.try(:locale) || I18n.default_locale
   end
 
   # 从请求路径的参数中获取区域设置，如果获取失败会返回nil
@@ -26,10 +25,9 @@ class BaseController < ApplicationController
   #   127.0.0.1 application.it
   #   127.0.0.1 application.pl
   def extract_locale_from_tld
-    parsed_locale = request.host.split('.').last
+    parsed_locale = request.host.split(".").last
     I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
   end
-
 
   # 从子域名中获取区域设置（例如 http://it.application.local:3000）
   # 需要在 /etc/hosts 文件中添加如下设置：

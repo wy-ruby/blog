@@ -4,6 +4,7 @@ class ApplicationPolicy
   def initialize(user, record)
     # 放在ApplicationPolicy中用来进行全局验证用户的登录情况，如果没有登录就抛出错误。
     raise Pundit::NotAuthorizedError, "must be logged in" unless user
+
     @user = user
     @record = record
   end

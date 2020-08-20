@@ -13,7 +13,7 @@
 #  index_role_permissions_on_permission_id  (permission_id)
 #  index_role_permissions_on_role_id        (role_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class RolePermissionTest < ActiveSupport::TestCase
   # test "the truth" do

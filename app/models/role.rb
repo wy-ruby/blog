@@ -12,17 +12,14 @@
 #  updated_at                           :datetime         not null
 #
 class Role < ApplicationRecord
-  has_and_belongs_to_many :users, :join_table => :users_roles
+  has_and_belongs_to_many :users, join_table: :users_roles
   has_and_belongs_to_many :admins, association_foreign_key: "user_id", join_table: :users_roles
   has_many :role_permissions
   has_many :permissions, through: :role_permissions
   has_many :system_messages
 
-  validates :resource_type,
-            :inclusion => { :in => Rolify.resource_types },
-            :allow_nil => true
+  validates :resource_type, inclusion: { in: Rolify.resource_types }, allow_nil: true
 
   # rolify中的一些scope的方法
   scopify
-
 end

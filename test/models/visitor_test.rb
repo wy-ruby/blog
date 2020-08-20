@@ -15,7 +15,7 @@
 #  index_visitors_on_user_id     (user_id)
 #  index_visitors_on_visitor_id  (visitor_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class VisitorTest < ActiveSupport::TestCase
   # test "the truth" do

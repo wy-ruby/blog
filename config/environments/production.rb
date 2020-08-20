@@ -11,7 +11,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
@@ -51,7 +51,7 @@ Rails.application.configure do
   # X-Sendfile 报头的作用是让服务器忽略程序的响应，直接从硬盘上伺服指定的文件。默认情况下服务器不会发送这个报头，但在支持该
   # 报头的服务器上可以启用。启用后，会跳过响应直接由服务器伺服文件，速度更快。
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
@@ -69,19 +69,19 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # 配置缓存的存储位置为redis,redis服务器总共可以设置16个数据库，如果没有设置默认是0
-  config.cache_store = :redis_cache_store, CACHE_REDIS_CONFIG.merge({namespace: 'cache', compress: true})
+  config.cache_store = :redis_cache_store, CACHE_REDIS_CONFIG.merge({ namespace: "cache", compress: true })
 
   # 配置http缓存
-  redis_password = CACHE_REDIS_CONFIG[:password].present? ? ":#{CACHE_REDIS_CONFIG[:password]}@": ""
+  redis_password = CACHE_REDIS_CONFIG[:password].present? ? ":#{CACHE_REDIS_CONFIG[:password]}@" : ""
   metastore_redis_config = "redis://#{redis_password}#{CACHE_REDIS_CONFIG[:host]}:#{CACHE_REDIS_CONFIG[:port]}/#{CACHE_REDIS_CONFIG[:db]}/metastore"
   entitystore_redis_config = "redis://#{redis_password}#{CACHE_REDIS_CONFIG[:host]}:#{CACHE_REDIS_CONFIG[:port]}/#{CACHE_REDIS_CONFIG[:db]}/entitystore"
   config.action_dispatch.rack_cache = {
-      metastore: metastore_redis_config,
-      entitystore: entitystore_redis_config
+    metastore: metastore_redis_config,
+    entitystore: entitystore_redis_config
   }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
@@ -112,14 +112,13 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
 
   # 配置email
   # 设置项说明
@@ -140,29 +139,29 @@ Rails.application.configure do
   # }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: Rails.application.credentials[:email_user]}
+  config.action_mailer.default_options = { from: Rails.application.credentials[:email_user] }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              'smtp.163.com',
-      port:                 25,
-      domain:               'smtp.163.com',
-      user_name:            Rails.application.credentials[:email_user],
-      password:             Rails.application.credentials[:email_pass],
-      authentication:       'login',
-      enable_starttls_auto: true  }
-
+    address: "smtp.163.com",
+    port: 25,
+    domain: "smtp.163.com",
+    user_name: Rails.application.credentials[:email_user],
+    password: Rails.application.credentials[:email_pass],
+    authentication: "login",
+    enable_starttls_auto: true
+  }
 
   # 配置 lograge 的支持。一般是在生产环境下配置的。
   config.lograge.enabled = true
   # 可以添加自定义内容。
   config.lograge.custom_options = lambda do |event|
-    { time: Time.now.strftime("%Y-%m-%d %H:%M:%S"), host: event.payload[:host]}
+    { time: Time.now.strftime("%Y-%m-%d %H:%M:%S"), host: event.payload[:host] }
   end
   # 可以添加一个钩子以直接访问控制器方法（例如request和current_user）该哈希将自动合并到日志数据中。
   config.lograge.custom_payload do |controller|
     {
-        protocol: controller.request.protocol.match(/([a-zA-Z]*)/)[0].to_s
+      protocol: controller.request.protocol.match(/([a-zA-Z]*)/)[0].to_s
     }
   end
   # 保持rails原本的日志信息

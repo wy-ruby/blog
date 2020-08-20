@@ -1,5 +1,6 @@
 # 配置sidekiq的处理任务的一个类，实际上使用该类处理队列任务的时候就是启动一个客户端去连接到sidekiq的服务端执行任务。
-# 例如：可以在rails c中执行命令： Sidekiq::Client.push('queue' => 'default', 'class' => SidekiqTestWorker, 'args' => ['foo', 1, :bat => 'bar'])
+# 例如：可以在rails c中执行命令：
+# Sidekiq::Client.push('queue' => 'default', 'class' => SidekiqTestWorker, 'args' => ['foo', 1, :bat => 'bar'])
 # push方法主要是推送任务到redis中可以接受的参数是一个哈希，哈希里面包括有:
 # queue - 对列名，默认为是：'default'
 # class - 如果是设置的为执行的某个类的类名，如本类中的SidekiqTestWorker,那么其配置是使用该类中配置的。否则将用job类的

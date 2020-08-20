@@ -3,5 +3,4 @@ namespace :practice do
   task whenever_test: :environment do
     p "hello world!"
   end
-
 end

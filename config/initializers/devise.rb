@@ -9,7 +9,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '0cec8f92fc9089fa26ee40a7e363d2fe75a22ed14a139b4c007c58f40425117605f67486eee27f720f34f5aeaae2d19cb62189e5c273f2598d39795503105f0b'
+  # config.secret_key = '0cec8f92fc9089c273f2598d39795503105f0b'
 
   # ==> Controller configuration
   # 控制器配置，设置父级控制器的名字。
@@ -29,14 +29,14 @@ Devise.setup do |config|
 
   # 配置负责发送电子邮件的父类
   # Configure the parent class responsible to send e-mails.
-  config.parent_mailer = 'ActionMailer::Base'
+  config.parent_mailer = "ActionMailer::Base"
 
   # ==> ORM configuration
   # Devise支持两种ORM库，active_record和mongoid，默认是active_record
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -127,7 +127,7 @@ Devise.setup do |config|
 
   # 设置一个pepper去生成一个哈希密码。
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'e83d8cd4be489ea4f8e024ef66e65595f76144325c2a32fe593eeaf3efcfe539217ab852e71e29aee99b1963723209c5fad3f14ab051018e57b6e2abb94c5437'
+  # config.pepper = 'e83d8cd4be489ea4f8e024ebb94c5437'
 
   # 用户修改邮箱的时候是否发送一封邮件到原邮箱。
   # Send a notification to the original email when the user's email is changed.
@@ -292,8 +292,8 @@ Devise.setup do |config|
   # 配置OmniAuth供应商
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :github, '9211bd36de0022424ad1', 'b0c483a5233b192d8547034d1836dfb39a1e4f5e', scope: "user,repo,gist"
-  config.omniauth :wechat, '9211bd36de0022424ad1', 'b0c483a5233b192d8547034d1836dfb39a1e4f5e'
+  config.omniauth :github, "9211bd36de0022424ad1", "b0c483a5233b192d8547034d1836dfb39a1e4f5e", scope: "user,repo,gist"
+  config.omniauth :wechat, "9211bd36de0022424ad1", "b0c483a5233b192d8547034d1836dfb39a1e4f5e"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

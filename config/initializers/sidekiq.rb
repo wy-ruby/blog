@@ -10,9 +10,9 @@ Sidekiq.configure_server do |config|
   #   config.death_handlers << ->(job, ex) do
   #     puts "Uh oh, #{job['class']} #{job["jid"]} just died with error #{ex.message}."
   #   end
-  config.death_handlers << ->(job, ex) do
+  config.death_handlers << lambda { |job, ex|
     puts "Uh oh, #{job['class']} #{job['jid']} just died with error #{ex.message}."
-  end
+  }
 
   # 配置sidekiq检查任务的时间间隔。如果不设置默认是5秒
   config.average_scheduled_poll_interval = 10

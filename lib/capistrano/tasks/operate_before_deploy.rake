@@ -47,5 +47,4 @@ namespace :first_deploy do
       end
     end
   end
-
 end

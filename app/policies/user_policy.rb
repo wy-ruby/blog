@@ -17,6 +17,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user_info.id == 1 or not user.published?
+    (user_info.id == 1) || !user.published?
   end
 end

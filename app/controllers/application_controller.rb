@@ -27,43 +27,42 @@ class ApplicationController < ActionController::Base
 
   # 处理不存在的路由信息。
   def route_not_found
-    render file: 'public/404', status: 404
+    render file: "public/404", status: 404
   end
 
   private
 
-    # 自定义pundit的全局用户无权限操作的时候的处理方法
-    def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
-      redirect_to(request.referrer || root_path)
-    end
+  # 自定义pundit的全局用户无权限操作的时候的处理方法
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
+  end
 
   # devise 配置的登录后跳转到的页面
-    def after_sign_in_path_for(resource)
-      # 自动解析resource资源类型，然后跳转到对应的目录
-      stored_location_for(resource) || get_after_sign_in_path(resource)
-    end
+  def after_sign_in_path_for(resource)
+    # 自动解析resource资源类型，然后跳转到对应的目录
+    stored_location_for(resource) || get_after_sign_in_path(resource)
+  end
 
   # 如果使用  stored_location_for 方法获取不到登录后跳转的地址，那么就用该方法解析出对应的地址。
-    def get_after_sign_in_path(resource)
-      if resource.class.name == "User"
-        edit_user_registration_path
-      elsif resource.class.name == "Admin"
-        edit_admin_registration_path
-      else
-        not_found_path
-      end
+  def get_after_sign_in_path(resource)
+    if resource.class.name == "User"
+      edit_user_registration_path
+    elsif resource.class.name == "Admin"
+      edit_admin_registration_path
+    else
+      not_found_path
     end
+  end
 
   # devise的退出登录后的页面
-    def after_sign_out_path_for(resource_or_scope)
-      if resource_or_scope == :user
-        unauthenticated_root_path
-      elsif resource_or_scope == :admin
-        admin_root_path
-      else
-        not_found_path
-      end
+  def after_sign_out_path_for(resource_or_scope)
+    if resource_or_scope == :user
+      unauthenticated_root_path
+    elsif resource_or_scope == :admin
+      admin_root_path
+    else
+      not_found_path
     end
-
+  end
 end

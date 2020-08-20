@@ -16,7 +16,7 @@
 #  index_system_messages_on_role_id  (role_id)
 #  index_system_messages_on_user_id  (user_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class SystemMessageTest < ActiveSupport::TestCase
   # test "the truth" do

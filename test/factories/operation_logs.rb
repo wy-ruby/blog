@@ -17,6 +17,5 @@
 #
 FactoryBot.define do
   factory :operation_log do
-    
   end
 end

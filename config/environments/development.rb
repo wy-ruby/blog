@@ -14,24 +14,25 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # 运行命令： rails dev:cache 可以开启文件缓存。
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = true
     # config.cache_store = :null_store
-    # config.cache_store = :redis_cache_store, CACHE_REDIS_CONFIG.merge({namespace: 'cache', compress: true, expires_in: 10.minutes})
+    # config.cache_store = :redis_cache_store,
+    #                      CACHE_REDIS_CONFIG.merge({namespace: 'cache', compress: true, expires_in: 10.minutes})
     config.cache_store = :redis_store, "redis://localhost:6379/2/cache", { expires_in: 90.minutes }
     # config.cache_store = :redis_cache_store, {driver: :hiredis, namespace: 'cache', compress: true,
     #                                           timeout: 1, url: "redis://127.0.0.1:6379/2"}
   end
 
   # 配置http缓存
-  redis_password = CACHE_REDIS_CONFIG[:password].present? ? ":#{CACHE_REDIS_CONFIG[:password]}@": ""
+  redis_password = CACHE_REDIS_CONFIG[:password].present? ? ":#{CACHE_REDIS_CONFIG[:password]}@" : ""
   metastore_redis_config = "redis://#{redis_password}#{CACHE_REDIS_CONFIG[:host]}:#{CACHE_REDIS_CONFIG[:port]}/#{CACHE_REDIS_CONFIG[:db]}/metastore"
   entitystore_redis_config = "redis://#{redis_password}#{CACHE_REDIS_CONFIG[:host]}:#{CACHE_REDIS_CONFIG[:port]}/#{CACHE_REDIS_CONFIG[:db]}/entitystore"
   config.action_dispatch.rack_cache = {
@@ -101,23 +102,24 @@ Rails.application.configure do
   # }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: Rails.application.credentials[:email_user]}
+  config.action_mailer.default_options = { from: Rails.application.credentials[:email_user] }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              'smtp.163.com',
-      port:                 25,
-      domain:               'smtp.163.com',
-      user_name:            Rails.application.credentials[:email_user],
-      password:             Rails.application.credentials[:email_pass],
-      authentication:       'login',
-      enable_starttls_auto: true  }
+    address: "smtp.163.com",
+    port: 25,
+    domain: "smtp.163.com",
+    user_name: Rails.application.credentials[:email_user],
+    password: Rails.application.credentials[:email_pass],
+    authentication: "login",
+    enable_starttls_auto: true
+  }
 
   # 在本地预编译一定不能运行 Capistrano 部署任务来预编译静态资源,并且要修改下面的配置(默认是/assets文件夹)；
   config.assets.prefix = "/dev-assets"
 
   # devise这个gem的配置，注意不同的环境配置内容是不同的。
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   # 配置 lograge 的支持。一般是在生产环境下配置的。日志是保存在 #{Rails.env}.log 中。
   # config.lograge.enabled = false
@@ -156,6 +158,4 @@ Rails.application.configure do
   # Lograge::Formatters::Raw.new       # 返回一个ruby的哈希对象
   # 除了格式化程序，您还可以通过传递一个响应#call的对象来自己操作数据：
   # config.lograge.formatter = ->(data) { "Called #{data[:controller]}" } # data is a ruby hash
-
-
 end

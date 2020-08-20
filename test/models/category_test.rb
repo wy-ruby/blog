@@ -12,7 +12,7 @@
 #
 #  index_categories_on_user_id  (user_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class CategoryTest < ActiveSupport::TestCase
   # test "the truth" do

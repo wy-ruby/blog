@@ -1,0 +1,54 @@
+AllCops:
+  # 配置不检测的文件
+  Exclude:
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
+    - '.idea/**/*'
+    - 'test/**/*'
+    - 'db/migrate/**/*'
+    - 'bin/**/*'
+    - 'test.rb'
+    - 'config/routes.rb'
+    - 'config/routes/sidekiq.rb'
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+# 不检测是否使用Ascii字符
+Style/AsciiComments:
+  Enabled: false
+Style/CharacterLiteral:
+  Description: '检测到回车符.'
+  StyleGuide: '#no-character-literals'
+  Enabled: true
+  VersionAdded: '0.9'
+# 配置不检测是否在第一行显示冻结字段
+Style/FrozenStringLiteralComment:
+  Enabled: false
+# 不检查引号的使用是否与配置的首选项匹配
+Style/StringLiterals:
+  Enabled: false
+# 不检测散列文字的元素是否超过一条线
+Layout/HashAlignment:
+  Enabled: false
+# 设置块的长度最大可达200个字符，默认是25
+Metrics/BlockLength:
+  Max: 200
+# 设置不检测是否对方法或者类进行文档的注视
+Style/Documentation:
+  Enabled: false
+# 不检测类继承是不是module的形式写的
+Style/ClassAndModuleChildren:
+  Enabled: false
+# 设置不检测空方法是否写成一行
+Style/EmptyMethod:
+  Enabled: false
+# 方法的代码的行数的设置，默认是10
+Metrics/MethodLength:
+  Max: 100
+# 设置不检测YAML载入yaml文件的时候是不是使用safe_load
+Security/YAMLLoad:
+  Enabled: false
+# 不检测是否引入全局变量
+Style/GlobalVars:
+  Enabled: false

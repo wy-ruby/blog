@@ -15,7 +15,7 @@
 #  index_operation_logs_on_operation_type_and_operation_id  (operation_type,operation_id)
 #  index_operation_logs_on_user_id                          (user_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class OperationLogTest < ActiveSupport::TestCase
   # test "the truth" do

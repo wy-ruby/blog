@@ -18,6 +18,5 @@
 #
 FactoryBot.define do
   factory :system_message do
-    
   end
 end

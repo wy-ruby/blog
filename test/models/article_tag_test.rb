@@ -12,7 +12,7 @@
 #  index_article_tags_on_article_id  (article_id)
 #  index_article_tags_on_tag_id      (tag_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class ArticleTagTest < ActiveSupport::TestCase
   # test "the truth" do

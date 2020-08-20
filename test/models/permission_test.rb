@@ -18,7 +18,7 @@
 #
 #  index_permissions_on_parent_id  (parent_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class PermissionTest < ActiveSupport::TestCase
   # test "the truth" do

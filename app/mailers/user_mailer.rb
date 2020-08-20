@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
   # 使用deliver_later是异步发送，并且能使用配置的sidekiq连接器。
   def welcome_email(user)
     @user = user
-    @url  = Rails.application.credentials[:test_url]
-    mail(to: @user.email, subject: '您好，您已经注册成功！')
+    @url = Rails.application.credentials[:test_url]
+    mail(to: @user.email, subject: "您好，您已经注册成功！")
   end
 end

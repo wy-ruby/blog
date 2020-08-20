@@ -22,12 +22,12 @@
 # set :output, {:error => 'log/cron_error.log', :standard => 'cron_access.log'}
 set :output, File.expand_path("../log/whenever_crontab.log", File.dirname(__FILE__))
 
-every '* * * * *' do
-  rake 'practice:whenever_test'
+every "* * * * *" do
+  rake "practice:whenever_test"
   command "echo 'you can use raw cron syntax too'"
 end
 
-every :day, at: '5:30pm', roles: [:app] do
+every :day, at: "5:30pm", roles: [:app] do
   command "echo '每天运行的，在roles角色为：app下进行的'"
 end
 

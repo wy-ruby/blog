@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -40,7 +40,7 @@ module Blog
     # 直接是转换后的 Local 时间，当然如果本身存储在 DB 中的时间就是 Local 时间那么就不转换。存储在 DB 中的时间仍然是 UTC 时间，要想更改
     # 这个存储在 DB 中的时间需要配置下面的 default_timezone 选项。
     # 对于中国地区来说，该选项设置成 Beijing 就可以了。
-    config.time_zone = 'Beijing'
+    config.time_zone = "Beijing"
     # 这个 default_timezone 是决定 active_record 对数据库交互的时区设置，也就是影响 created_at 和 updated_at 在数据库的记录时间。
     # 只有两个参数:utc 和:local，rails 初始化时默认是 utc，所以保存到数据库的时间是 utc 时间。
     config.active_record.default_timezone = :local
@@ -48,13 +48,13 @@ module Blog
 end
 
 # 获取redis的配置信息。
-read_config = YAML::load(File.open('config/redis.yml'))
+read_config = YAML.load(File.open("config/redis.yml"))
 
 # 不使用hiredis，把.merge(:driver => :hiredis)去掉即可
 # REDIS_CONFIG = read_config[Rails.env].symbolize_keys
 # 使用hiredis。当有大量回复（例如：lrange、smembers、zrange等）或使用大型管道时，最好使用hiredis。
 # cache、session、http片段缓存用一个单独的redis数据库(编号为2)来保存数据，
 # sidekiq用一个单独的redis数据库(编号为1)，其他的信息再用一个单独的数据库(编号为默认数据看库0)。
-REDIS_CONFIG = read_config[Rails.env].symbolize_keys.merge(:driver => :hiredis)
-CACHE_REDIS_CONFIG = REDIS_CONFIG.merge(:db => 2)
-SIDEKIQ_REDIS_CONFIG = REDIS_CONFIG.merge(:db => 1)
+REDIS_CONFIG = read_config[Rails.env].symbolize_keys.merge(driver: :hiredis)
+CACHE_REDIS_CONFIG = REDIS_CONFIG.merge(db: 2)
+SIDEKIQ_REDIS_CONFIG = REDIS_CONFIG.merge(db: 1)

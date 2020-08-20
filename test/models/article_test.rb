@@ -20,7 +20,7 @@
 #  index_articles_on_category_id  (category_id)
 #  index_articles_on_user_id      (user_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
   # test "the truth" do

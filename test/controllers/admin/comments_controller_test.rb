@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Admin::CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class Admin::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create comment" do
-    assert_difference('Comment.count') do
-      post admin_comments_url, params: { comment: {  } }
+    assert_difference("Comment.count") do
+      post admin_comments_url, params: {comment: {}}
     end
 
     assert_redirected_to comment_url(Comment.last)
@@ -34,12 +34,12 @@ class Admin::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update comment" do
-    patch admin_comment_url(@comment), params: { comment: {  } }
+    patch admin_comment_url(@comment), params: {comment: {}}
     assert_redirected_to comment_url(@comment)
   end
 
   test "should destroy comment" do
-    assert_difference('Comment.count', -1) do
+    assert_difference("Comment.count", -1) do
       delete admin_comment_url(@comment)
     end
 

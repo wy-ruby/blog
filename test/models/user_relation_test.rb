@@ -11,7 +11,7 @@
 #
 #  index_user_relations_on_user_id  (user_id)
 #
-require 'test_helper'
+require "test_helper"
 
 class UserRelationTest < ActiveSupport::TestCase
   # test "the truth" do

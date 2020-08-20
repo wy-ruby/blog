@@ -1,41 +1,41 @@
-source 'https://gems.ruby-china.com'
+source "https://gems.ruby-china.com"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby "2.5.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4'
+gem "rails", "~> 5.2.4"
 
 # 使用pg数据库
-gem 'pg'
+gem "pg"
 # pg数据库的性能仪表板
-gem 'pghero'
-gem 'pg_query', '~> 1.2.0'
+gem "pg_query", "~> 1.2.0"
+gem "pghero"
 
 # Use Puma as the app server
-gem 'puma', '~> 3.12'
+gem "puma", "~> 3.12"
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem "sass-rails", "~> 5.0"
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem "uglifier", ">= 1.3.0"
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem "coffee-rails", "~> 4.2"
 
 # Turbolinks
 # 详情参考链接: https://github.com/turbolinks/turbolinks 或者参考docs/Turbolinks.md
-gem 'turbolinks', '~> 5'
+gem "turbolinks", "~> 5"
 
 # 使用生成器生成JSON对象，常见如views/**/xxx.json.jbuilder文件 .详细见: /docs/Jbuilder.md
-gem 'jbuilder', '~> 2.5'
+gem "jbuilder", "~> 2.5"
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem "bcrypt", "~> 3.1.7"
 
 # 处理跨域问题
 # gem 'rack-cors'
@@ -45,33 +45,34 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 # 使用缓存的方式加快rails应用的启动速度。缓存到tmp/cache目录下，一般是该目录下的bootsnap*文件夹
-gem 'bootsnap', '>= 1.1.0', require: false
+gem "bootsnap", ">= 1.1.0", require: false
 
 # 是用于编译和服务assets的Ruby库
-gem 'sprockets', '~> 3.0'
+gem "sprockets", "~> 3.0"
 
 # 异步队列。
-gem 'sidekiq'
+gem "sidekiq"
 
 # 写入Linux中的crontab定时任务的一个ruby的DSL
-gem 'whenever', require: false
+gem "whenever", require: false
 
 # Ruby国际化和本地化的解决方案
-gem 'i18n'
-gem 'rails-i18n', '~> 5.0.3'
+gem "i18n"
+gem "rails-i18n", "~> 5.0.3"
 
 # redis相关的。 hiredis是一个高性能的redis两者结合用，和redis这个gem结合用。当您有大量回复（例如：lrange、smembers、zrange等）或使用大型管道时，最好使用hiredis。
-# redis-rails和redis-rack-cache是提供了完整的一套如(cache,session,http cache)等存储功能的包。如果rails是5.2及以上的版本，并且只需要使用片段缓存的话就不需要这个了，rails5.2已经有了。
+# redis-rails和redis-rack-cache是提供了完整的一套如(cache,session,http cache)等存储功能的包。如果rails是5.2及以上的版本，并且只
+# 需要使用片段缓存的话就不需要这个了，rails5.2已经有了。
 # redis-namespace这个是可以让redis在配置文件中设置命名空间的gem包
-gem 'hiredis', '~> 0.6.1'
-gem 'redis', '~> 4.0.2'
-gem 'redis-namespace'
+gem "hiredis", "~> 0.6.1"
+gem "redis", "~> 4.0.2"
+gem "redis-namespace"
 
-gem 'redis-rails'
-gem 'redis-rack-cache'
+gem "redis-rack-cache"
+gem "redis-rails"
 
 # 数据库初始数据相关。默认读取的是db/fixtures下的文件。
-gem 'seed-fu'
+gem "seed-fu"
 
 # 上传组件
 # gem "carrierwave"
@@ -80,7 +81,7 @@ gem 'seed-fu'
 # gem 'jquery-rails'
 
 # 前端ui框架bootstrap
-gem 'bootstrap', '~> 4.5.0'
+gem "bootstrap", "~> 4.5.0"
 # font-awesome-rails提供了Font-Awesome Web字体和样式表，作为与asset pipeline 一起使用的Rails引擎。
 gem "font-awesome-rails"
 
@@ -134,28 +135,28 @@ gem "omniauth-wechat-oauth2"
 # gem 'china_regions'
 
 # 使用JWT实现Token认证
-gem 'jwt'
+gem "jwt"
 # 符合 JWT (JSON Web Token) 规范的认证 API
-gem 'knock'
+gem "knock"
 
 # grape 可以帮助我们快速的构建和 Rails 完美融合的 API 接口。
-gem 'grape'
-gem 'grape-entity'
-gem 'grape-swagger'
-gem 'grape-swagger-entity'
-gem 'grape-swagger-rails'
-gem 'grape_logging'
-gem 'grape_on_rails_routes'
+gem "grape"
+gem "grape-entity"
+gem "grape-swagger"
+gem "grape-swagger-entity"
+gem "grape-swagger-rails"
+gem "grape_logging"
+gem "grape_on_rails_routes"
 
 # GraphQL一种用于 API 的查询语言
-gem 'graphql', '~> 1.9'
+gem "graphql", "~> 1.9"
 
 # 邮件服务
 # gem "postmark"
 # gem "postmark-rails"
 
 # 拒绝低版本浏览器的访问，并给其返回一个让其升级的页面。
-gem 'browser_warrior', '>= 0.8.0'
+gem "browser_warrior", ">= 0.8.0"
 
 # 异常监控通知
 # gem 'exception_notification'
@@ -180,13 +181,13 @@ gem 'browser_warrior', '>= 0.8.0'
 # gem 'trestle'
 
 # 能创造简单并且比较高级的搜索条件。
-gem 'ransack'
+gem "ransack"
 
 # # Kaminari是一个基于范围和引擎的、干净、强大、可自定义复杂条件的分页器。
-gem 'kaminari'
+gem "kaminari"
 
 # 基于Redis的简单的Web请求性能监控/慢事务追踪工具
-gem 'simple_apm'
+gem "simple_apm"
 
 # 管理配置信息的库。
 # gem "rails-settings-cached", "~> 2.0"
@@ -195,10 +196,10 @@ gem 'simple_apm'
 gem "bunny", "~> 2.14.1"
 # 业务通过 Bunny 在 Rails 中简易、快速地生产发布了消息，就需要有消费者来接收和消费消息，
 # Sneakers 是一个处理 RabbitMQ 消息队列的高性能 Ruby 框架
-gem 'sneakers'
+gem "sneakers"
 
 # aasm ruby类的状态机（支持普通Ruby，ActiveRecord，Mongoid）
-gem 'aasm'
+gem "aasm"
 
 # 一些使用rack协议编写的小工具。
 gem "rack-contrib"
@@ -215,24 +216,22 @@ gem "rack-attack"
 # gem 'friendly_id', '~> 5.2.4'
 
 # 所见即所得编辑器
-gem 'ckeditor'
+gem "ckeditor"
 
 # 改变 rails 默认的日志，使变得更好。更简洁且高效的显示日志内容。
 gem "lograge"
 # Logstash与Beats，Elasticsearch和Kibana一起是Elastic Stack的一部分。
 # Logstash是服务器端数据处理管道，它同时从多个源中提取数据，进行转换，然后将其发送到您喜欢的“stash”。
-gem 'logstash-event'
+gem "logstash-event"
 
-# 状态机
-gem  'aasm'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "byebug", platforms: %i[mri mingw x64_mingw]
 
   # 开发环境中发邮件的时候不用发到真实的邮箱中了
-  gem 'letter_opener'
+  gem "letter_opener"
 
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
 
   # BDD 行为驱动开发
   # gem 'cucumber'
@@ -247,72 +246,75 @@ group :development, :test do
   # gem 'timecop'
 
   # 生成文档工具
-  gem 'sdoc'
+  gem "sdoc"
+
+  # 只是一个规范。只需要使用命令 standardrb --fix 即可。
+  gem "standard", "~> 0.4.7"
 end
 
 group :development do
   # web-console是RubyonRails应用程序在浏览器上的调试工具,报错的时候可以调试的。
-  gem 'web-console', '>= 3.3.0'
+  gem "web-console", ">= 3.3.0"
 
   # 监听文件变动，并你去通知修改
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem "listen", ">= 3.0.5", "< 3.2"
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # 运行测试时，保持development在后台运行，不需要重启
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "spring"
+  gem "spring-commands-rspec"
+  gem "spring-watcher-listen"
 
   # capistrano相关的gem。如果服务器没有安装rvm及ruby可以使用rvm1-capistrano3这个gem去在服务端自动安装。
-  gem 'capistrano', '~> 3.11', require: false
-  gem 'capistrano-bundler', '~> 1.5', require: false
-  gem 'capistrano-rails', '~> 1.4', require: false
-  gem 'capistrano-rvm', require: false
+  gem "capistrano", "~> 3.11", require: false
+  gem "capistrano-bundler", "~> 1.5", require: false
+  gem "capistrano-rails", "~> 1.4", require: false
+  gem "capistrano-rvm", require: false
   # 可以在服务器安装rvm及ruby的工具。
-  gem 'rvm1-capistrano3', require: false
-  gem 'capistrano-sidekiq'
-  gem 'capistrano3-puma'
+  gem "capistrano-sidekiq"
+  gem "capistrano3-puma"
+  gem "rvm1-capistrano3", require: false
 
   # 用于调试代码的一些工具
-  gem 'pry'
-  gem 'pry-byebug'
-  gem 'pry-rails'
-  gem 'pry-remote'
+  gem "pry"
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "pry-remote"
 
   # 友好且详尽的错误显示页面
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  gem "better_errors"
+  gem "binding_of_caller"
   # 性能分析工具
-  gem 'rubycritic', require: false
+  gem "rubycritic", require: false
 
   # 代码风格指南工具。具体使用,在根目录输入命令 rubocop -h 查看即可。 rubocop ./config/deploy
-  gem 'rubocop', '~> 0.81.0', require: false
-  gem 'rubocop-rspec', require: false
-  gem 'rubocop-performance'
-  gem 'rubocop-rails', require: false
+  gem "rubocop", "~> 0.85.0", require: false
+  gem "rubocop-performance", "~> 1.6.0", require: false
+  gem "rubocop-rails", require: false
 
   # 检测你的gem使用情况。命令：  bundle exec derailed bundle:mem   使用derailed -h查看可用命令
-  gem 'derailed'
-  gem 'stackprof'
-  gem 'derailed_benchmarks'
+  gem "derailed"
+  gem "derailed_benchmarks"
+  gem "stackprof"
 
   # 一个文档生成工具
-  gem 'yard', '>= 0.9.20'
+  gem "yard", ">= 0.9.20"
 
   # 代码质量控制。使用命令： rails_best_practices . 分析。 -h帮助
-  gem 'rails_best_practices'
+  gem "rails_best_practices"
 
   # model中自动生成数据表相关的文档。命令 rails g annotate:install 生成一个rake，之后db:migrate的时候会自动更新model中的文档了。
   # rake annotate_routes 该命令生成路由相关的文档
-  gem 'annotate'
+  gem "annotate"
 
   # Chrome中的扩展，可以在Chrome开发者工具中查看如请求响应时间等的详细信息。
-  gem 'meta_request'
+  gem "meta_request"
 
   # 检查没有用到的routes。 执行命令 rake traceroute
-  gem 'traceroute'
+  gem "traceroute"
 
   # 语法漏洞检测工具。命令 brakeman  或者brakeman ./config/deploy.rb,具体的可用brakeman -h
-  gem 'brakeman'
+  gem "brakeman"
 
   # 帮助解决rails的N+1问题
   gem "bullet"
@@ -321,7 +323,7 @@ group :development do
   # gem 'graphiql-rails', '~> 1.7.0'
 
   # 在日志中写入请求源信息
-  gem 'active_record_query_trace'
+  gem "active_record_query_trace"
 
   # 给你的MacOS的发送通知消息
   # gem 'terminal-notifier'
@@ -329,36 +331,36 @@ end
 
 group :test do
   # 基于机架的Web应用程序的集成测试工具。它模拟用户如何与网站交互
-  gem 'capybara', '>= 2.15'
+  gem "capybara", ">= 2.15"
   # 模拟用户的行为，与html交互
   gem "selenium-webdriver"
 
   # 可以更轻松地运行Selenium(浏览器自动测试框架)测试。
-  gem 'webdrivers'
+  gem "webdrivers"
 
   # 清理数据库的策略。可用于确保测试的清洁状态。
-  gem 'database_cleaner'
+  gem "database_cleaner"
 
-  gem 'launchy'
+  gem "launchy"
 
   # 配置测试需要的数据
-  gem 'webmock'
+  gem "webmock"
 
   # 单元测试
-  gem 'rspec'
-  gem 'rspec-core'
-  gem 'rspec-expectations'
-  gem 'rspec-mocks'
-  gem 'rspec-rails'
-  gem 'rspec-support'
-  gem 'rspec-sidekiq'
+  gem "rspec"
+  gem "rspec-core"
+  gem "rspec-expectations"
+  gem "rspec-mocks"
+  gem "rspec-rails"
+  gem "rspec-sidekiq"
+  gem "rspec-support"
 
   # 生成虚假数据
   gem "faker"
 
   # 代码覆盖率工具。产生精美的报告。
-  gem 'simplecov', require: false
+  gem "simplecov", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
