@@ -8,6 +8,7 @@ namespace :admin do
   }
 
   devise_scope :admin do
+    get "logout", to: "/devise/sessions#destroy"
     # 未登录的话就跳转到登录首页，也就是users/session#new
     unauthenticated do
       root '/devise/sessions#new', as: :root
