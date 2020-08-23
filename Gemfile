@@ -18,14 +18,18 @@ gem "puma", "~> 3.12"
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
 
-# Use Uglifier as compressor for JavaScript assets
-gem "uglifier", ">= 1.3.0"
+# Ruby 包装 UglifyJS（使用 NodeJS 开发），作用是通过删除空白和注释、缩短局部变量名及其他微小
+# 优化（例如在可能的情况下把 if&#8230;&#8203;else 语句修改为三元运算符）压缩 JavaScript 代码。
+gem "uglifier"
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem "coffee-rails", "~> 4.2"
+
+# 在rails中使用 react
+gem "react-rails"
 
 # Turbolinks
 # 详情参考链接: https://github.com/turbolinks/turbolinks 或者参考docs/Turbolinks.md

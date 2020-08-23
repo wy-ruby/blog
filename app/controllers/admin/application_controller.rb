@@ -1,5 +1,4 @@
 class Admin::ApplicationController < ApplicationController
-  layout "admin"
   # 任何操作前都需要先登录
   before_action :authenticate_admin!
   # 获取设置的语言

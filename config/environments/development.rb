@@ -14,15 +14,14 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # 运行命令： rails dev:cache 可以开启文件缓存。
+  config.action_controller.perform_caching = true
   if Rails.root.join("tmp", "caching-dev.txt").exist?
-    config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
-    config.action_controller.perform_caching = true
     # config.cache_store = :null_store
     # config.cache_store = :redis_cache_store,
     #                      CACHE_REDIS_CONFIG.merge({namespace: 'cache', compress: true, expires_in: 10.minutes})
