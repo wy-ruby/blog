@@ -169,7 +169,7 @@ Devise.setup do |config|
   # config.confirmation_keys = [:email]
 
   # ==> Configuration for :rememberable
-  # The time the user will be remembered without asking for credentials again.
+  # 无需再次请求凭证即记住用户的时间
   config.remember_for = 2.weeks
 
   # Invalidates all the remember me tokens when the user signs out.
@@ -183,7 +183,7 @@ Devise.setup do |config|
   # config.rememberable_options = {}
 
   # ==> Configuration for :validatable
-  # Range for password length.
+  # 密码长度范围.
   config.password_length = 6..128
 
   # Email regex used to validate email formats. It simply asserts that
@@ -205,7 +205,7 @@ Devise.setup do |config|
   config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-  # config.unlock_keys = [:email]
+  config.unlock_keys = [:email]
 
   # Defines which strategy will be used to unlock an account.
   # 配置解锁策略

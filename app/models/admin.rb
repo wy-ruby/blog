@@ -50,8 +50,8 @@
 class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
-  has_and_belongs_to_many :roles, foreign_key: "user_id", join_table: :users_roles
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :lockable
+  has_and_belongs_to_many :roles, foreign_key: "user_id", join_table: "users_roles"
 
   # 实际上 user和admin模型是共用users表的。
   self.table_name = "users"

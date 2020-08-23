@@ -82,7 +82,9 @@ gem "seed-fu"
 # gem "carrierwave"
 
 # rails中使用jquery
-# gem 'jquery-rails'
+gem 'jquery-rails'
+# bootstrap中依赖的js
+gem 'popper_js'
 
 # 前端ui框架bootstrap
 gem "bootstrap", "~> 4.5.0"
