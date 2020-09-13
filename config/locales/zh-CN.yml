@@ -1,1 +1,11 @@
 zh-CN:
+  admin:
+    background_management_system: "后台管理系统"
+    devise:
+      background_management: "后台管理"
+      email_address: "邮箱地址"
+      password: "密码"
+      remember: "记住我"
+      login: "登录"
+      forgot_password: "忘记密码?"
+      captcha: "验证码"

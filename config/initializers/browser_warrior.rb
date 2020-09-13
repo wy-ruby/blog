@@ -13,6 +13,11 @@ BrowserWarrior.detect do |browser|
   next true if browser.weibo?
   next true if browser.facebook?
 
+  # 安卓和苹果系统
+  next true if browser.platform.android?
+  next true if browser.platform.ios?
+  next true if browser.uc_browser?
+
   # Block known non-modern browser
   next false if browser.chrome?("<= 65")
   next false if browser.safari?("< 10")

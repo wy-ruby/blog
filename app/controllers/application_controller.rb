@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   # 开启csrf(跨站请求伪造)安全防护。请记住，GET和HEAD请求不会被检查。
   protect_from_forgery with: :exception
 
-  # 定义日志中要额外添加保存的信息，信息放在 event.payload 的哈希中，可以在 config/environments/* 配置中添加的 custom_options 选项获取。
+  # 定义lograge日志中要额外添加保存的信息，信息放在 event.payload 的哈希中，可以在 config/environments/* 配置中添加的 custom_options 选项获取。
   def append_info_to_payload(payload)
     super
     payload[:host] = request.host

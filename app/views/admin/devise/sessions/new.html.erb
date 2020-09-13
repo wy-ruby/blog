@@ -1,0 +1,41 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html:{ class: "form-signin text-center"}) do |f| %>
+
+  <%#= image_tag "header.png", height: "72", width: "72" %>
+  <h1 class="h3 mb-3 font-weight-normal"><%= t('admin.devise.please_sign_in') %></h1>
+
+  <%= f.label :email, class: "sr-only" %><br />
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><%= fa_icon "envelope" %></span>
+    </div>
+    <%= f.email_field :email, class: "form-control", placeholder:"#{t('admin.devise.email_address')}", autofocus: true %>
+  </div>
+
+  <%= f.label :password, class: "sr-only" %><br />
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><%= fa_icon "key" %></span>
+    </div>
+    <%= f.password_field :password, class: "form-control", placeholder:"#{t('admin.devise.password')}" %>
+  </div>
+
+  <div class="input-group mb-3">
+    <%= rucaptcha_input_tag(class: 'form-control', placeholder: "#{t('admin.devise.captcha')}", pattern: "[a-zA-Z]*", maxlength: "4") %>
+    <div class = "input-group-append input-group-captcha">
+        <%= rucaptcha_image_tag(alt: 'click refresh', title: 'click refresh', height: "36") %>
+    </div>
+  </div>
+
+  <%= link_to "#{t('admin.devise.forgot_password')}", new_password_path(resource_name), class: "float-right" %>
+  <% if devise_mapping.rememberable? %>
+    <div class="checkbox mb-3 text-left">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, "#{t('admin.devise.remember')}" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "#{t('admin.devise.login')}", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+<% end %>
+

@@ -81,7 +81,7 @@ class User < ApplicationRecord
   #
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :timeoutable, :confirmable, :lockable, :trackable,
-         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %w[github wechat]
+         :recoverable, :rememberable, :validatable
 
   # User 的关联关系
   has_many :articles

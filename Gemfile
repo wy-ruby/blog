@@ -1,7 +1,7 @@
 source "https://gems.ruby-china.com"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.5.1"
+ruby "2.5.8"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.2.4"
@@ -101,9 +101,8 @@ gem "font-awesome-rails"
 # 静态页面相关的gem
 # gem 'high_voltage', '~> 3.0.0'
 
-# 验证码，头像
-# gem "letter_avatar"
-# gem "rucaptcha"
+# 验证码
+gem "rucaptcha"
 
 # 监控 数据库、redis、Cache、Sidekiq、Resque的状态的工具。
 # gem 'status-page'
@@ -120,7 +119,6 @@ gem "font-awesome-rails"
 
 # 用户系统
 gem "devise"
-gem "devise-encryptable"
 
 # 可以为我们的应用加入操作权限控制。
 gem "pundit"
@@ -134,7 +132,7 @@ gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-wechat-oauth2"
 
-# Oauth2 provider
+# 提供Oauth2授权服务
 # gem 'doorkeeper'
 
 # 中国的省市县区的数据库
@@ -230,12 +228,26 @@ gem "lograge"
 # Logstash是服务器端数据处理管道，它同时从多个源中提取数据，进行转换，然后将其发送到您喜欢的“stash”。
 gem "logstash-event"
 
+# 搜索引擎优化(SEO)插件Ruby on Rails应用。
+gem 'meta-tags'
+
+# 从后台推送消息到浏览器上。
+# gem 'webpush'
+
+# 用于解析json数据
+# gem 'oj'
+
+# 命令行命令构建工具
+# gem 'thor'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
 
   # 开发环境中发邮件的时候不用发到真实的邮箱中了
   gem "letter_opener"
+  # 本地架设一个最简单的邮件服务器，不真实发送邮件
+  gem "mailcatcher"
 
   gem "factory_bot_rails"
 

@@ -93,26 +93,35 @@ Rails.application.configure do
   # deliveries	把通过 Action Mailer 使用 :test 方式发送的邮件保存到一个数组中，协助单元测试和功能测试。
   # default_options	为 mail 方法设置默认选项值（:from，:reply_to 等）。
 
-  config.action_mailer.delivery_method = :sendmail
+
+  # 使用mailcatcher 这个gem让你不用真实的发送邮件。本地暗转该gem，然后直接运行命令 mailcatcher 即可
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => '127.0.0.1', :port => 1025 }
+  config.action_mailer.raise_delivery_errors = false
+
+
+  # config.action_mailer.delivery_method = :sendmail
+  #
   # Defaults to:
   # config.action_mailer.sendmail_settings = {
   #   location: '/usr/sbin/sendmail',
   #   arguments: '-i -t'
   # }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: Rails.application.credentials[:email_user] }
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.163.com",
-    port: 25,
-    domain: "smtp.163.com",
-    user_name: Rails.application.credentials[:email_user],
-    password: Rails.application.credentials[:email_pass],
-    authentication: "login",
-    enable_starttls_auto: true
-  }
+  #
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.default_options = { from: Rails.application.credentials[:email_user] }
+  #
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.163.com",
+  #   port: 25,
+  #   domain: "smtp.163.com",
+  #   user_name: Rails.application.credentials[:email_user],
+  #   password: Rails.application.credentials[:email_pass],
+  #   authentication: "login",
+  #   enable_starttls_auto: true
+  # }
 
   # 在本地预编译一定不能运行 Capistrano 部署任务来预编译静态资源,并且要修改下面的配置(默认是/assets文件夹)；
   config.assets.prefix = "/dev-assets"

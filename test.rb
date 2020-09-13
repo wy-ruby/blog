@@ -1,46 +1,29 @@
-# frozen_string_literal: true
-
-module Rack
-  class A
-    def initialize(app)
-      @app = app # @app: Rack::B
-      @header_name = 'X-A'
+class Test
+    def method_public
+        puts  "In method_public"
     end
 
-    def call(env)
-      start_time = Time.now
-      status, headers, body = @app.call(env) #  Rack::B 实例调用 call
-      request_time = Time.now - start_time
-
-      headers[@header_name] = '%0.6f' % request_time unless headers.key?(@header_name)
-
-      [status, headers, body]
-    end
-  end
-
-  class B
-    def initialize(app)
-      @app = app # @app: Rack::C
-      @header_name = 'X-test'
+    def method_protected
+        puts "In method_protected"
     end
 
-    def call(env)
-      status, headers, body = @app.call(env) #  Rack::C 实例调用 call
-
-      headers[@header_name] = 'yyyyyy' unless headers.key?(@header_name)
-
-      [status, headers, body + ['aaaaaa']]
+    def method_private
+        puts "In method_private"
     end
-  end
 
-  class C
-    def call(_env)
-      [200, { 'Content-Type' => 'text/plain' }, ['hello world!']]
+    protected :method_protected
+    private   :method_private
+
+    def call_method_protected(testmember)
+        puts testmember.method_protected
     end
-  end
+    def call_method_private(testmember)
+        puts testmember.method_private
+    end
+
 end
+test1 = Test.new
+test2 = Test.new
 
-use Rack::A
-use Rack::B
-
-run Rack::C.new
+test2.call_method_protected(test1)
+# test2.call_method_private(test1)

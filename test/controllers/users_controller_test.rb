@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create user" do
-    assert_difference("User.count") do
-      post users_url, params: {user: {age: @user.age, email: @user.email, name: @user.name, sex: @user.sex}}
+    assert_difference('User.count') do
+      post users_url, params: { user: {  } }
     end
 
     assert_redirected_to user_url(User.last)
@@ -34,12 +34,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user" do
-    patch user_url(@user), params: {user: {age: @user.age, email: @user.email, name: @user.name, sex: @user.sex}}
+    patch user_url(@user), params: { user: {  } }
     assert_redirected_to user_url(@user)
   end
 
   test "should destroy user" do
-    assert_difference("User.count", -1) do
+    assert_difference('User.count', -1) do
       delete user_url(@user)
     end
 
