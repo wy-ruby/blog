@@ -2,6 +2,15 @@
 
 en:
   devise:
+    login:
+      please_sign_in: "Please Sign In"
+      background_management: "Background Management"
+      email_address: "Email Address"
+      password: "Password"
+      remember: "Remember"
+      login: "Log In"
+      forgot_password: "Forgot Password?"
+      captcha: "Captcha"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."

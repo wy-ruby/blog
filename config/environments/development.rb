@@ -94,7 +94,7 @@ Rails.application.configure do
   # default_options	为 mail 方法设置默认选项值（:from，:reply_to 等）。
 
 
-  # 使用mailcatcher 这个gem让你不用真实的发送邮件。本地暗转该gem，然后直接运行命令 mailcatcher 即可
+  # 使用mailcatcher 这个gem让你不用真实的发送邮件。本地暗转该gem，命令行直接运行命令 mailcatcher 即可
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => '127.0.0.1', :port => 1025 }
   config.action_mailer.raise_delivery_errors = false

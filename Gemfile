@@ -13,7 +13,7 @@ gem "pg_query", "~> 1.2.0"
 gem "pghero"
 
 # Use Puma as the app server
-gem "puma", "~> 3.12"
+gem "puma"
 
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
@@ -33,13 +33,13 @@ gem "react-rails"
 
 # Turbolinks
 # 详情参考链接: https://github.com/turbolinks/turbolinks 或者参考docs/Turbolinks.md
-gem "turbolinks", "~> 5"
+gem "turbolinks", "~> 5.2"
 
 # 使用生成器生成JSON对象，常见如views/**/xxx.json.jbuilder文件 .详细见: /docs/Jbuilder.md
-gem "jbuilder", "~> 2.5"
+gem "jbuilder", "~> 2.10"
 
 # Use ActiveModel has_secure_password
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1"
 
 # 处理跨域问题
 # gem 'rack-cors'
@@ -49,7 +49,7 @@ gem "bcrypt", "~> 3.1.7"
 
 # Reduces boot times through caching; required in config/boot.rb
 # 使用缓存的方式加快rails应用的启动速度。缓存到tmp/cache目录下，一般是该目录下的bootsnap*文件夹
-gem "bootsnap", ">= 1.1.0", require: false
+gem "bootsnap", "~> 1.4.0", require: false
 
 # 是用于编译和服务assets的Ruby库
 gem "sprockets", "~> 3.0"
@@ -62,14 +62,14 @@ gem "whenever", require: false
 
 # Ruby国际化和本地化的解决方案
 gem "i18n"
-gem "rails-i18n", "~> 5.0.3"
+gem "rails-i18n"
 
 # redis相关的。 hiredis是一个高性能的redis两者结合用，和redis这个gem结合用。当您有大量回复（例如：lrange、smembers、zrange等）或使用大型管道时，最好使用hiredis。
 # redis-rails和redis-rack-cache是提供了完整的一套如(cache,session,http cache)等存储功能的包。如果rails是5.2及以上的版本，并且只
 # 需要使用片段缓存的话就不需要这个了，rails5.2已经有了。
 # redis-namespace这个是可以让redis在配置文件中设置命名空间的gem包
 gem "hiredis", "~> 0.6.1"
-gem "redis", "~> 4.0.2"
+gem "redis", "~> 4"
 gem "redis-namespace"
 
 gem "redis-rack-cache"
@@ -153,7 +153,7 @@ gem "grape_logging"
 gem "grape_on_rails_routes"
 
 # GraphQL一种用于 API 的查询语言
-gem "graphql", "~> 1.9"
+gem "graphql"
 
 # 邮件服务
 # gem "postmark"
@@ -246,8 +246,8 @@ group :development, :test do
 
   # 开发环境中发邮件的时候不用发到真实的邮箱中了
   gem "letter_opener"
-  # 本地架设一个最简单的邮件服务器，不真实发送邮件
-  gem "mailcatcher"
+  # 本地架设一个最简单的邮件服务器，不真实发送邮件。这个由于依赖的gem的版本兼容的问题就不在Gemfile中引入了，直接在命令行安装。
+  # gem "mailcatcher"
 
   gem "factory_bot_rails"
 
@@ -272,10 +272,10 @@ end
 
 group :development do
   # web-console是RubyonRails应用程序在浏览器上的调试工具,报错的时候可以调试的。
-  gem "web-console", ">= 3.3.0"
+  gem "web-console"
 
   # 监听文件变动，并你去通知修改
-  gem "listen", ">= 3.0.5", "< 3.2"
+  gem "listen", "~> 3.2"
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # 运行测试时，保持development在后台运行，不需要重启

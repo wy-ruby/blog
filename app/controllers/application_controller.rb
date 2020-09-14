@@ -41,7 +41,6 @@ class ApplicationController < ActionController::Base
   # devise 配置的登录后跳转到的页面
   def after_sign_in_path_for(resource)
     # 自动解析resource资源类型，然后跳转到对应的目录
-    binding.pry
     stored_location_for(resource) || get_after_sign_in_path(resource)
   end
 

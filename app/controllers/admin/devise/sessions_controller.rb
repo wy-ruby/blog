@@ -12,7 +12,6 @@ class Admin::Devise::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     if verify_rucaptcha?
-      binding.pry
       super
     else
       redirect_back(fallback_location: admin_root_path)

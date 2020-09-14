@@ -2,6 +2,15 @@
 
 zh-CN:
   devise:
+    login:
+      please_sign_in: "请登录"
+      background_management: "后台管理"
+      email_address: "邮箱地址"
+      password: "密码"
+      remember: "记住我"
+      login: "登录"
+      forgot_password: "忘记密码?"
+      captcha: "验证码"
     confirmations:
       confirmed: "您的帐号已经确认，您现在已登录。"
       send_instructions: "几分钟后，您将收到确认帐号的电子邮件。"
