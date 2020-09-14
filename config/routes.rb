@@ -252,5 +252,5 @@ Rails.application.routes.draw do
   end
 
   # 匹配未定义的路由到 application下的route_not_found 方法中。
-  get "*unmatched_route", to: "application#route_not_found", as: :not_found
+  get "*unmatched_route", to: "application#route_not_found", as: :not_found if Rails.env = "production"
 end

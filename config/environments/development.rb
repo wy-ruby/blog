@@ -129,6 +129,9 @@ Rails.application.configure do
   # devise这个gem的配置，注意不同的环境配置内容是不同的。
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
+  # 默认情况下，React的[development version]提供给Rails.env.development。您可以使用配置覆盖React构建
+  config.react.variant = :development
+
   # 配置 lograge 的支持。一般是在生产环境下配置的。日志是保存在 #{Rails.env}.log 中。
   # config.lograge.enabled = false
   # 可以添加自定义内容。
