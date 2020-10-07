@@ -48,7 +48,8 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 
 class Admin < User
-  # 使用默认scope以保证所选用户必定为管理员用户
+  # 使用默认scope以保证所选用户必定为管理员用户。因为这里是继承User模型，并且User模型设置了default_scope，所以需要先清除User模型的
+  # default_scope。
   self.default_scopes = []
   default_scope { where(is_admin: true) }
 

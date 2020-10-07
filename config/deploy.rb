@@ -47,7 +47,7 @@
 #
 #
 
-lock "~> 3.11.0"
+lock "~> 3.14"
 
 # 部署后，在shared文件夹中创建下列这些文件夹，并把文件夹软链接到rails对应的目录中去。可用于永久目录。
 # .bundle 文件也是会被设置在shared文件夹下的，该目录中有一个配置文件，配置所有的gem包的存放位置的，存放目录一般是shared/bundle/ruby/2.3.0/gems
@@ -60,24 +60,25 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 append :linked_files, "config/database.yml", "config/application.yml", "config/redis.yml",
        "config/master.key", "config/schedule.rb", "config/sidekiq.yml"
 
+set :application, "blog"
+
 # 服务器上的ruby版本以及gemset的名字，如果不在服务器上配置gemset的话，@gemset_name可为空字符串。
 @ruby_version = "2.5.1"
-@gemset_name = "blog"
+@gemset_name = fetch(:application)
 
 # 项目仓库配置
-@project_name = "blog"
+@project_name = fetch(:application)
 @git_url = "git@github.com:wy-ruby"
 @repo_url = "#{@git_url}/#{@project_name}.git"
 
 # 服务器上部署的路径配置
 # 该项一般配置在config/deploy下的环境中
-set :application, "blog"
 @complete_app_dir = "/home/live/#{fetch(:application)}"
 
 # 输入要发布的分支
 # ask(:use_branch, 'master', echo: true)
 # @branch = fetch(:use_branch)
-@branch = "develop"
+@branch = "master"
 
 # capistrano这个gem本身的参数设置,还包括上面配置的:application以及:linked_dirs和:linked_files这两个数组。
 # # 部署的服务器的路径。默认是 { "/var/www/#{fetch(:application)}" }

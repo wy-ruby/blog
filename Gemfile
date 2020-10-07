@@ -41,9 +41,6 @@ gem "jbuilder", "~> 2.10"
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1"
 
-# 处理跨域问题
-# gem 'rack-cors'
-
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -56,6 +53,8 @@ gem "sprockets", "~> 3.0"
 
 # 异步队列。
 gem "sidekiq"
+# 在sidekiq的worker中进行周期性的执行
+# gem 'mini_scheduler'
 
 # 写入Linux中的crontab定时任务的一个ruby的DSL
 gem "whenever", require: false
@@ -155,6 +154,9 @@ gem "grape_on_rails_routes"
 # GraphQL一种用于 API 的查询语言
 gem "graphql"
 
+# 更高性能的json解析包
+# gem 'oj'
+
 # 邮件服务
 # gem "postmark"
 # gem "postmark-rails"
@@ -240,6 +242,20 @@ gem 'meta-tags'
 # 命令行命令构建工具
 # gem 'thor'
 
+# 支持 Ruby 开发者轻松访问阿里云服务，例如：弹性云主机（ECS）、负载均衡（SLB）、云监控（CloudMonitor）等。 您无需处理API相关
+# 业务（如签名和构建请求）即可访问阿里云服务。
+# gem 'aliyunsdkcore'
+# 阿里云短信
+# gem 'aliyun-sms'
+
+# scenic可以将SQL视图的功能带到Rails应用程序中
+# gem "scenic"
+
+# 序列化model中的字段
+# gem 'active_model_serializers', '~> 0.10.0'
+
+# 用来配置环境变量存储私密（如数据库密码，邮箱密码等）信息。实际上这个gem和 dotenv-rails 类似，看具体的技术选型。
+# gem "figaro"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
@@ -250,11 +266,6 @@ group :development, :test do
   # gem "mailcatcher"
 
   gem "factory_bot_rails"
-
-  # BDD 行为驱动开发
-  # gem 'cucumber'
-  # gem 'cucumber-rails', require: false
-  # gem 'cucumber-api-steps', require: false
 
   # faker生成伪数据。
   # gem 'faker'
@@ -268,6 +279,14 @@ group :development, :test do
 
   # 只是一个规范。只需要使用命令 standardrb --fix 即可。
   gem "standard", "~> 0.4.7"
+
+  # 添加单元测试 gem 到 development 和 test 环境中。
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+  end
+
+  # 在生产和开发环境中配置环境变量，使用ENV引入
+  # gem 'dotenv-rails'
 end
 
 group :development do
@@ -285,7 +304,7 @@ group :development do
 
   # capistrano相关的gem。如果服务器没有安装rvm及ruby可以使用rvm1-capistrano3这个gem去在服务端自动安装。
   gem "capistrano", "~> 3.11", require: false
-  gem "capistrano-bundler", "~> 1.5", require: false
+  gem "capistrano-bundler", "~> 2.0", require: false
   gem "capistrano-rails", "~> 1.4", require: false
   gem "capistrano-rvm", require: false
   # 可以在服务器安装rvm及ruby的工具。
@@ -348,13 +367,21 @@ group :development do
 end
 
 group :test do
-  # 基于机架的Web应用程序的集成测试工具。它模拟用户如何与网站交互
+  # 基于rake的Web应用程序的集成测试工具。它模拟用户如何与网站交互
   gem "capybara", ">= 2.15"
+  # 用于集成测试HTML表单
+  gem "formulaic"
+
   # 模拟用户的行为，与html交互
   gem "selenium-webdriver"
 
   # 可以更轻松地运行Selenium(浏览器自动测试框架)测试。
   gem "webdrivers"
+
+  # BDD 行为驱动开发
+  # gem 'cucumber'
+  # gem 'cucumber-rails', require: false
+  # gem 'cucumber-api-steps', require: false
 
   # 清理数据库的策略。可用于确保测试的清洁状态。
   gem "database_cleaner"
@@ -363,15 +390,6 @@ group :test do
 
   # 配置测试需要的数据
   gem "webmock"
-
-  # 单元测试
-  gem "rspec"
-  gem "rspec-core"
-  gem "rspec-expectations"
-  gem "rspec-mocks"
-  gem "rspec-rails"
-  gem "rspec-sidekiq"
-  gem "rspec-support"
 
   # 生成虚假数据
   gem "faker"

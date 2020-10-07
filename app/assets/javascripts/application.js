@@ -40,10 +40,7 @@
 //= require turbolinks
 //= require cable
 //= require_self
-// react相关的
-//= require react
-//= require react_ujs
-//= require components
+
 // bootstrap引入jquery和popper_js
 //= require jquery
 //= require popper
