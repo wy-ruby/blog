@@ -57,7 +57,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 # 注意这里rails是5.2版本的，从这个版本开始，config/secrets.yml变成了config/master.key，即低于5.2版本的话要引入的是secrets.yml,否则会报错。
 # 注意这些手动添加的配置中需要有对应的内容，否则也会报错。
 # 把定时任务的schedule.rb文件加入是为了更新定时任务的时候不用执行发布即可。
-append :linked_files, "config/database.yml", "config/application.yml", "config/redis.yml",
+append :linked_files, "config/database.yml", "config/redis.yml",
        "config/master.key", "config/schedule.rb", "config/sidekiq.yml"
 
 set :application, "blog"

@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
     if resource.class.name == "User"
       edit_user_registration_path
     elsif resource.class.name == "Admin"
-      edit_admin_registration_path
+      admin_root_path
     else
       not_found_path
     end
@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
     if resource_or_scope == :user
       unauthenticated_root_path
     elsif resource_or_scope == :admin
-      admin_root_path
+      new_admin_session_path
     else
       not_found_path
     end
