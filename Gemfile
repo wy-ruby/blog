@@ -85,6 +85,8 @@ gem 'jquery-rails'
 # bootstrap中依赖的js
 gem 'popper_js'
 
+gem "animate-rails"
+
 # 前端ui框架bootstrap
 gem "bootstrap", "~> 4.5.0"
 # font-awesome-rails提供了Font-Awesome Web字体和样式表，作为与asset pipeline 一起使用的Rails引擎。

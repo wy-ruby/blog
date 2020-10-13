@@ -1,3 +1,6 @@
 zh-CN:
   admin:
-    title: "后台管理"
+    nav:
+      background_management_system: "后台管理系统"
+      title: "后台管理"
+      home: "首页"

@@ -39,6 +39,7 @@
 //= require activestorage
 //= require turbolinks
 //= require cable
+//= require_directory './admin'
 //= require_self
 
 // bootstrap引入jquery和popper_js

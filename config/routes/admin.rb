@@ -1,6 +1,5 @@
 namespace :admin do
-  resources :articles
-  resources :comments
+  concerns :article_comments
   root 'dashboards#index', as: :root
 
   # devise相关路由

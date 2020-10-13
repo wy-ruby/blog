@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blog</title>
+    <title><%= t('admin.nav.background_management_system') %></title>
     <!--    browser_warrior 这个gem推荐的设置。-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8">
     <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= display_meta_tags site: 'My website' %>
 
     <!--    设置跨站点请求伪造保护参数和令牌-->
@@ -15,13 +18,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% if current_admin %>
-      <%= link_to('退出', destroy_admin_session_path, :method => :delete) %> |
-      <%= link_to('修改密码', edit_admin_password_path(:user)) %>
+  <body class="nav-md">
+    <% flash.each do |key, value| %>
+      <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container body">
+      <div class="main_container">
+        <%= render "comments/sidenav" %>
+        <%= render "comments/topnav" %>
+        <%= yield %>
+        <%= render "comments/footer" %>
+      </div>
+    </div>
   </body>
 </html>

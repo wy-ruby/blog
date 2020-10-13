@@ -28,7 +28,15 @@
 #                user_unlock GET    /users/unlock(.:format)                                                                  users/unlocks#show
 #                            POST   /users/unlock(.:format)                                                                  users/unlocks#create
 #                sidekiq_web        /sidekiq                                                                                 Sidekiq::Web
-#               queue_status GET    /queue-status(.:format)                                                                  #<Proc:0x00007fe02eb107b8@(eval):19>
+#               queue_status GET    /queue-status(.:format)                                                                  #<Proc:0x00007fea7ec1f0f0@(eval):19>
+#     admin_article_comments GET    /admin/articles/:article_id/comments(.:format)                                           admin/comments#index
+#                            POST   /admin/articles/:article_id/comments(.:format)                                           admin/comments#create
+#  new_admin_article_comment GET    /admin/articles/:article_id/comments/new(.:format)                                       admin/comments#new
+# edit_admin_article_comment GET    /admin/articles/:article_id/comments/:id/edit(.:format)                                  admin/comments#edit
+#      admin_article_comment GET    /admin/articles/:article_id/comments/:id(.:format)                                       admin/comments#show
+#                            PATCH  /admin/articles/:article_id/comments/:id(.:format)                                       admin/comments#update
+#                            PUT    /admin/articles/:article_id/comments/:id(.:format)                                       admin/comments#update
+#                            DELETE /admin/articles/:article_id/comments/:id(.:format)                                       admin/comments#destroy
 #             admin_articles GET    /admin/articles(.:format)                                                                admin/articles#index
 #                            POST   /admin/articles(.:format)                                                                admin/articles#create
 #          new_admin_article GET    /admin/articles/new(.:format)                                                            admin/articles#new
@@ -67,8 +75,6 @@
 #           new_admin_unlock GET    /admin/unlock/new(.:format)                                                              admin/devise/unlocks#new
 #               admin_unlock GET    /admin/unlock(.:format)                                                                  admin/devise/unlocks#show
 #                            POST   /admin/unlock(.:format)                                                                  admin/devise/unlocks#create
-#               admin_logout GET    /admin/logout(.:format)                                                                  admin/devise/sessions#destroy
-# admin_unauthenticated_root GET    /admin(.:format)                                                                         admin/devise/sessions#new
 #                      users GET    (/:locale)/users(.:format)                                                               users#index {:locale=>/en|zh-CN/}
 #                            POST   (/:locale)/users(.:format)                                                               users#create {:locale=>/en|zh-CN/}
 #                   new_user GET    (/:locale)/users/new(.:format)                                                           users#new {:locale=>/en|zh-CN/}
@@ -130,6 +136,14 @@ Rails.application.routes.draw do
 
   # 配置 pghero 的路由。这是pg数据库的性能仪表盘
   mount PgHero::Engine, at: "pghero"
+
+  # concern 用于声明公共路由，公共路由可以在其他资源和路由中重复使用。
+  concern :article_comments do
+    resources :articles do
+      resources :comments
+    end
+    resources :comments
+  end
 
   def draw(routes_name)
     instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
