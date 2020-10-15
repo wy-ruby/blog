@@ -1,7 +1,9 @@
+// bootstrap需要引入的。
 @import "bootstrap";
+// font-awesome需要引入的。
 @import "font-awesome";
+// 把app/assets/javascripts/admin文件夹下的所有scss文件都引入当前文件。
 @import "admin/*";
-@import "animate";
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

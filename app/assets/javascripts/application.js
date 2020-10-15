@@ -35,14 +35,19 @@
 // Sprockets会按照从上至下的require顺序处理指令，但require_tree引入的文件顺序是不可预期的，不要设想能得到一个期望的顺序，所以
 // 不建议使用。如果要确保某些 avaScript文件出现在其他文件之前，就要先在清单文件中引入。注意，require等指令不会多次加载同一个文件。
 //
+// 初始化的时候默认加载的一些js文件。
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require cable
+
+// 把app/assets/javascripts/admin文件夹下的所有js文件都引入当前文件，方便后续用sprockets把这些所有的js文件编译到application.js文件中。
 //= require_directory './admin'
-//= require_self
 
 // bootstrap引入jquery和popper_js
 //= require jquery
 //= require popper
 //= require bootstrap
+
+// 把当前文件中的 CSS 加入调用 require_self 的位置。
+//= require_self
