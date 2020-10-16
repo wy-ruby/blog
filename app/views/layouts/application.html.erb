@@ -18,17 +18,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="nav-md">
-    <% flash.each do |key, value| %>
-      <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-    <div class="container body">
-      <div class="main_container">
-        <%= render "comments/sidenav" %>
-        <%= render "comments/topnav" %>
-        <%= yield %>
-        <%= render "comments/footer" %>
-      </div>
-    </div>
+  <body class="container-fluid px-0">
+    <%# flash.each do |key, value| %>
+<!--      <div align="center" id="flash" class="alert alert-<%#= key %>"><%#= value %></div>-->
+    <%# end %>
+    <%= render "comments/topnav" %>
+    <%= render "comments/sidenav" %>
+    <%= yield %>
+    <%#= render "comments/footer" %>
   </body>
 </html>
