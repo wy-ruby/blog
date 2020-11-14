@@ -63,7 +63,8 @@ gem "whenever", require: false
 gem "i18n"
 gem "rails-i18n"
 
-# redis相关的。 hiredis是一个高性能的redis两者结合用，和redis这个gem结合用。当您有大量回复（例如：lrange、smembers、zrange等）或使用大型管道时，最好使用hiredis。
+# redis相关的。 hiredis是一个高性能的redis两者结合用，和redis这个gem结合用。当您有大量回复（例如：lrange、smembers、zrange等）或
+# 使用大型管道时，最好使用hiredis。
 # redis-rails和redis-rack-cache是提供了完整的一套如(cache,session,http cache)等存储功能的包。如果rails是5.2及以上的版本，并且只
 # 需要使用片段缓存的话就不需要这个了，rails5.2已经有了。
 # redis-namespace这个是可以让redis在配置文件中设置命名空间的gem包
@@ -230,6 +231,9 @@ gem "lograge"
 # Logstash是服务器端数据处理管道，它同时从多个源中提取数据，进行转换，然后将其发送到您喜欢的“stash”。
 gem "logstash-event"
 
+# 可以在生产上方便查看日志一般是 /logs 路由中。
+gem "logster"
+
 # 搜索引擎优化(SEO)插件Ruby on Rails应用。
 gem 'meta-tags'
 
@@ -260,30 +264,34 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
 
-  # 开发环境中发邮件的时候不用发到真实的邮箱中了
-  gem "letter_opener"
+  # 开发环境中发邮件的时候不用发到真实的邮箱中了。不过感觉mailcatcher更简单方便
+  # gem "letter_opener"
   # 本地架设一个最简单的邮件服务器，不真实发送邮件。这个由于依赖的gem的版本兼容的问题就不在Gemfile中引入了，直接在命令行安装。
   # gem "mailcatcher"
 
+  # 用于定义和使用工厂的框架和DSL，用来帮助测试
   gem "factory_bot_rails"
 
   # faker生成伪数据。
-  # gem 'faker'
+  gem 'faker'
 
   # 一个提供“时间旅行”和“时间冻结”功能的gem，使测试依赖于时间的代码变得非常简单。它提供了
   # 一个统一的方法，可以在单个调用中模拟Time.now，Date.today和DateTime.now。
-  # gem 'timecop'
+  gem 'timecop'
 
   # 生成文档工具
   gem "sdoc"
 
-  # 只是一个规范。只需要使用命令 standardrb --fix 即可。
-  gem "standard", "~> 0.4.7"
-
   # 添加单元测试 gem 到 development 和 test 环境中。
-  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
-  end
+  # %w[rspec-core rspec-expectations rspec-rails rspec-support].each do |lib|
+  #   gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+  # end
+  gem "rspec","~>3.10"
+  gem "rspec-mocks","~>3.10"
+  gem "rspec-support","~>3.10"
+  gem "rspec-expectations","~>3.10"
+  gem "rspec-core","~>3.10"
+  gem "rspec-rails","~>4.0"
 
   # 在生产和开发环境中配置环境变量，使用ENV引入
   # gem 'dotenv-rails'
@@ -329,15 +337,14 @@ group :development do
   gem "rubocop-performance", "~> 1.6.0", require: false
   gem "rubocop-rails", require: false
 
-  # 检测你的gem使用情况。命令：  bundle exec derailed bundle:mem   使用derailed -h查看可用命令
-  gem "derailed"
+  # 对应用进行基准测试。命令：  bundle exec derailed bundle:mem   使用 derailed -h查看可用命令
   gem "derailed_benchmarks"
   gem "stackprof"
 
   # 一个文档生成工具
   gem "yard", ">= 0.9.20"
 
-  # 代码质量控制。使用命令： rails_best_practices . 分析。 -h帮助
+  # 代码质量控制。使用命令： rails_best_practices .    -h帮助
   gem "rails_best_practices"
 
   # model中自动生成数据表相关的文档。命令 rails g annotate:install 生成一个rake，之后db:migrate的时候会自动更新model中的文档了。
@@ -364,11 +371,18 @@ group :development do
 
   # 给你的MacOS的发送通知消息
   # gem 'terminal-notifier'
+
+  # 一个让你一修改测试文件，就自动跑测试的工具。
+  gem 'guard'
+  gem 'guard-bundler', require: false
+  gem 'guard-rspec','~> 4.7', require: false
 end
 
 group :test do
   # 基于rake的Web应用程序的集成测试工具。它模拟用户如何与网站交互
   gem "capybara", ">= 2.15"
+  # 是Capybara的纯Ruby驱动。
+  gem "cuprite"
   # 用于集成测试HTML表单
   gem "formulaic"
 
@@ -385,14 +399,13 @@ group :test do
 
   # 清理数据库的策略。可用于确保测试的清洁状态。
   gem "database_cleaner"
+  gem "database_cleaner-active_record"
+  gem "database_cleaner-redis"
 
   gem "launchy"
 
   # 配置测试需要的数据
   gem "webmock"
-
-  # 生成虚假数据
-  gem "faker"
 
   # 代码覆盖率工具。产生精美的报告。
   gem "simplecov", require: false

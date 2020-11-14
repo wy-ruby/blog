@@ -52,5 +52,4 @@ class Admin < User
   # default_scope。
   self.default_scopes = []
   default_scope { where(is_admin: true) }
-
 end

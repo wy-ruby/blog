@@ -57,4 +57,4 @@ set :rails_env, "production"
 set :stage, :production
 
 # 配置要发布的服务器
-server "xxx.xxx.xxx.xxx", user: "live", roles: %i[app db]
+server "xxx.xxx.xxx.xxx", user: "xxx", roles: %i[app db]

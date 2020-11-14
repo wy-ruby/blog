@@ -8,16 +8,16 @@ Rails.application.configure do
   # 可以添加一个钩子以直接访问控制器方法（例如request和current_user）。
   config.lograge.custom_payload do |controller|
     {
-        host: controller.request.host,
+      host: controller.request.host,
         user_id: controller.current_user.try(:id)
     }
   end
 
   # custom_options可以是lambda或哈希,如果是lambda，则必须返回哈希
-  config.lograge.custom_options = lambda do |event|
+  config.lograge.custom_options = lambda do |_event|
     # capture some specific timing values you are interested in
     {
-        time: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+      time: Time.now.strftime("%Y-%m-%d %H:%M:%S")
     }
   end
 

@@ -20,7 +20,7 @@
 # 5. 用户在部署的时候手动输入命令： ask(:database_name, "default_database_name")，第二个参数是不输入的时候默认。第三个参数是一个哈希
 #    比如可以设置echo: true这个配置是在命令终端输入的时候显示用户输入的内容，可以设置false不显示用户输入。然后用fetch(:database_name)获取
 #
-# ﻿执行cap production deploy的时候都执行了什么？按照怎样的顺序执行的？下面是其执行顺序及过程
+# 执行cap production deploy的时候都执行了什么？按照怎样的顺序执行的？下面是其执行顺序及过程
 # deploy:starting    - start a deployment, make sure everything is ready
 # deploy:started     - started hook (for custom tasks)
 # deploy:updating    - update server(s) with a new release
@@ -63,7 +63,7 @@ append :linked_files, "config/database.yml", "config/redis.yml",
 set :application, "blog"
 
 # 服务器上的ruby版本以及gemset的名字，如果不在服务器上配置gemset的话，@gemset_name可为空字符串。
-@ruby_version = "2.5.1"
+@ruby_version = "2.5.8"
 @gemset_name = fetch(:application)
 
 # 项目仓库配置
@@ -73,7 +73,7 @@ set :application, "blog"
 
 # 服务器上部署的路径配置
 # 该项一般配置在config/deploy下的环境中
-@complete_app_dir = "/home/live/#{fetch(:application)}"
+@complete_app_dir = "/home/wy/#{fetch(:application)}"
 
 # 输入要发布的分支
 # ask(:use_branch, 'master', echo: true)
@@ -166,7 +166,7 @@ set :puma_workers, 2
 set :puma_conf, "#{shared_path}/config/puma.rb"
 # 配置绑定的端口或者sock,支持多绑定如  set :puma_bind, %w(tcp://0.0.0.0:9292 unix:///tmp/puma.sock)
 # 建议使用tcp形式的，unix的可能会在部分服务器上出一定的问题(测试有报过ActionController::InvalidAuthenticityToken错误)。
-set :puma_bind, "tcp://0.0.0.0:8081"
+set :puma_bind, "tcp://0.0.0.0:3000"
 # 配置使用的角色
 set :puma_role, %i[app web]
 
