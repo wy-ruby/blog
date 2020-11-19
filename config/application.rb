@@ -44,6 +44,17 @@ module Blog
     # 这个 default_timezone 是决定 active_record 对数据库交互的时区设置，也就是影响 created_at 和 updated_at 在数据库的记录时间。
     # 只有两个参数:utc 和:local，rails 初始化时默认是 utc，所以保存到数据库的时间是 utc 时间。
     config.active_record.default_timezone = :local
+
+    # rspec-rails 的配置
+    config.generators do |g|
+      g.test_framework :rspec,
+                       fixtures: false,
+                       view_specs: false,
+                       helper_specs: true,
+                       routing_specs: true,
+                       controller_specs: true
+    end
+
   end
 end
 

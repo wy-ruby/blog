@@ -214,7 +214,7 @@ gem "rack-contrib"
 # 保护你的应用免收不良客户端的请求的拦截器。
 gem "rack-attack"
 
-# bugsnageRuby的Bugsnag异常报告器会立即通知您从Rails，Sinatra，Rack或纯Ruby应用程序引发的异常。
+# bugsnage Ruby的Bugsnag异常报告器会立即通知您从Rails，Sinatra，Rack或纯Ruby应用程序引发的异常。
 # 任何未捕获的异常都会触发通知，该通知将发送到您的Bugsnag项目。
 # gem "bugsnag", "~> 6.12"
 # gem "uniform_notifier"
@@ -282,18 +282,15 @@ group :development, :test do
   # 生成文档工具
   gem "sdoc"
 
-  # 添加单元测试 gem 到 development 和 test 环境中。
-  # %w[rspec-core rspec-expectations rspec-rails rspec-support].each do |lib|
-  #   gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
-  # end
-  gem "rspec","~>3.10"
-  gem "rspec-mocks","~>3.10"
-  gem "rspec-support","~>3.10"
-  gem "rspec-expectations","~>3.10"
-  gem "rspec-core","~>3.10"
-  gem "rspec-rails","~>4.0"
+  gem "rspec-rails", "~>4.0"
+  # 实际上rspec-rails是依赖下面的这些gem的，所以只需要安装rspec-rails即可。
+  # gem "rspec","~>3.10"
+  # gem "rspec-mocks","~>3.10"
+  # gem "rspec-support","~>3.10"
+  # gem "rspec-expectations","~>3.10"
+  # gem "rspec-core","~>3.10"
 
-  # 在生产和开发环境中配置环境变量，使用ENV引入
+  # 在测试和开发环境中配置环境变量，使用ENV引入
   # gem 'dotenv-rails'
 end
 
