@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_812_030_457) do
+ActiveRecord::Schema.define(version: 2020_08_12_030457) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -68,7 +69,7 @@ ActiveRecord::Schema.define(version: 20_200_812_030_457) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
-    t.index %w[discuss_type discuss_id], name: "index_comments_on_discuss_type_and_discuss_id"
+    t.index ["discuss_type", "discuss_id"], name: "index_comments_on_discuss_type_and_discuss_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -81,7 +82,7 @@ ActiveRecord::Schema.define(version: 20_200_812_030_457) do
     t.integer "speed_time", comment: "消耗时间,单位毫秒(ms)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index %w[operation_type operation_id], name: "index_operation_logs_on_operation_type_and_operation_id"
+    t.index ["operation_type", "operation_id"], name: "index_operation_logs_on_operation_type_and_operation_id"
     t.index ["user_id"], name: "index_operation_logs_on_user_id"
   end
 
@@ -107,7 +108,7 @@ ActiveRecord::Schema.define(version: 20_200_812_030_457) do
     t.float "total_time", comment: "查询使用的时间"
     t.bigint "calls"
     t.datetime "captured_at", comment: "捕获时间"
-    t.index %w[database captured_at], name: "index_pghero_query_stats_on_database_and_captured_at"
+    t.index ["database", "captured_at"], name: "index_pghero_query_stats_on_database_and_captured_at"
   end
 
   create_table "role_permissions", force: :cascade do |t|
@@ -212,7 +213,7 @@ ActiveRecord::Schema.define(version: 20_200_812_030_457) do
     t.bigint "user_id", comment: "多对多关联中的用户的id"
     t.bigint "role_id", comment: "多对多关联中的角色的id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
-    t.index %w[user_id role_id], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
@@ -226,4 +227,5 @@ ActiveRecord::Schema.define(version: 20_200_812_030_457) do
     t.index ["user_id"], name: "index_visitors_on_user_id"
     t.index ["visitor_id"], name: "index_visitors_on_visitor_id"
   end
+
 end

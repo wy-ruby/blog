@@ -45,14 +45,16 @@ module Blog
     # 只有两个参数:utc 和:local，rails 初始化时默认是 utc，所以保存到数据库的时间是 utc 时间。
     config.active_record.default_timezone = :local
 
-    # rspec-rails 的配置
+    # 添加自动加载的目录
+    config.autoload_paths += Dir["#{config.root}/lib/validators"]
+
     config.generators do |g|
       g.test_framework :rspec,
-                       fixtures: false,
                        view_specs: false,
                        helper_specs: true,
-                       routing_specs: true,
+                       routing_specs: false,
                        controller_specs: true
+      g.factory_bot suffix: "factory"
     end
 
   end

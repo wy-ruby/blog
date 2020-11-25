@@ -229,7 +229,11 @@ gem "ckeditor"
 gem "lograge"
 # Logstash与Beats，Elasticsearch和Kibana一起是Elastic Stack的一部分。
 # Logstash是服务器端数据处理管道，它同时从多个源中提取数据，进行转换，然后将其发送到您喜欢的“stash”。
-gem "logstash-event"
+gem "logstash-event", require: false
+gem 'logstash-logger', require: false
+
+# Logster是嵌入式Ruby“例外报告服务”，管理员可以在实时网站上查看。
+gem 'logster'
 
 # 可以在生产上方便查看日志一般是 /logs 路由中。
 gem "logster"
@@ -260,6 +264,10 @@ gem 'meta-tags'
 
 # 用来配置环境变量存储私密（如数据库密码，邮箱密码等）信息。实际上这个gem和 dotenv-rails 类似，看具体的技术选型。
 # gem "figaro"
+
+# 地理位置信息的计算（通过经纬度）的一个gem
+gem 'geocoder'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
@@ -372,16 +380,21 @@ group :development do
   # 一个让你一修改测试文件，就自动跑测试的工具。
   gem 'guard'
   gem 'guard-bundler', require: false
-  gem 'guard-rspec','~> 4.7', require: false
+  gem 'guard-rspec', '~> 4.7', require: false
 end
 
 group :test do
   # 基于rake的Web应用程序的集成测试工具。它模拟用户如何与网站交互
   gem "capybara", ">= 2.15"
-  # 是Capybara的纯Ruby驱动。
+  # 是Capybara的纯Ruby驱动，它允许您在无头的Chrome或Chromium上运行Capybara测试。。
   gem "cuprite"
   # 用于集成测试HTML表单
-  gem "formulaic"
+  # gem "formulaic"
+  # 配合 capybara 使用，是一种从ruby程序内部启动外部应用程序的通用方法。
+  gem "launchy"
+
+  # 用来精简 rspec 测试代码编写的gem
+  gem 'shoulda-matchers', '~> 4.0'
 
   # 模拟用户的行为，与html交互
   gem "selenium-webdriver"
@@ -399,7 +412,8 @@ group :test do
   gem "database_cleaner-active_record"
   gem "database_cleaner-redis"
 
-  gem "launchy"
+  # 记录测试套件的HTTP交互(如调用三方api时，但是它们有限制次数，或者如阿里云短信付费)，并在以后的测试运行期间重播它们，以进行快速，准确的测试。
+  # gem "vcr"
 
   # 配置测试需要的数据
   gem "webmock"
