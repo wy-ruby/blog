@@ -48,6 +48,7 @@ module Blog
     # 添加自动加载的目录
     config.autoload_paths += Dir["#{config.root}/lib/validators"]
 
+    # rspec测试相关的配置。
     config.generators do |g|
       g.test_framework :rspec,
                        view_specs: false,

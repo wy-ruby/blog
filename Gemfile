@@ -145,15 +145,19 @@ gem "knock"
 
 # grape 可以帮助我们快速的构建和 Rails 完美融合的 API 接口。
 gem "grape"
-gem "grape-entity"
 gem "grape-swagger"
-gem "grape-swagger-entity"
 gem "grape-swagger-rails"
+gem "grape-entity"
+gem "grape-swagger-entity"
 gem "grape_logging"
+# 展示 grape api 的路由
 gem "grape_on_rails_routes"
 
 # GraphQL一种用于 API 的查询语言
 gem "graphql"
+
+# 在Rails应用程序中安装GraphiQL查询编辑器
+# gem 'graphiql-rails', '~> 1.7.0'
 
 # 更高性能的json解析包
 # gem 'oj'
@@ -232,11 +236,8 @@ gem "lograge"
 gem "logstash-event", require: false
 gem 'logstash-logger', require: false
 
-# Logster是嵌入式Ruby“例外报告服务”，管理员可以在实时网站上查看。
+# Logster是嵌入式Ruby“例外报告服务”，管理员可以在实时网站上查看。可以在生产上方便查看日志一般是 /logs 路由中。
 gem 'logster'
-
-# 可以在生产上方便查看日志一般是 /logs 路由中。
-gem "logster"
 
 # 搜索引擎优化(SEO)插件Ruby on Rails应用。
 gem 'meta-tags'
@@ -266,7 +267,7 @@ gem 'meta-tags'
 # gem "figaro"
 
 # 地理位置信息的计算（通过经纬度）的一个gem
-gem 'geocoder'
+# gem 'geocoder'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -288,7 +289,7 @@ group :development, :test do
   gem 'timecop'
 
   # 生成文档工具
-  gem "sdoc"
+  # gem "sdoc"
 
   gem "rspec-rails", "~>4.0"
   # 实际上rspec-rails是依赖下面的这些gem的，所以只需要安装rspec-rails即可。
@@ -367,9 +368,6 @@ group :development do
 
   # 帮助解决rails的N+1问题
   gem "bullet"
-
-  # 在Rails应用程序中安装GraphiQL查询编辑器
-  # gem 'graphiql-rails', '~> 1.7.0'
 
   # 在日志中写入请求源信息
   gem "active_record_query_trace"
