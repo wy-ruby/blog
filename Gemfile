@@ -267,7 +267,12 @@ gem 'meta-tags'
 # gem "figaro"
 
 # 地理位置信息的计算（通过经纬度）的一个gem
-# gem 'geocoder'
+# gem "geocoder"
+
+# 静态页面缓存，可以缓存那些静态资源，然后通过配置 nginx ，让这些缓存的路由直接通过 nginx 代理，使之根本不走 rails。
+# 然后配合 rails-observers 当模型发生更新或者删除的时候可以通过回调去删除静态页面缓存资源，使静态资源"动态化"。
+# gem "actionpack-page_caching"
+# gem "rails-observers"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -289,7 +294,7 @@ group :development, :test do
   gem 'timecop'
 
   # 生成文档工具
-  # gem "sdoc"
+  gem "sdoc"
 
   gem "rspec-rails", "~>4.0"
   # 实际上rspec-rails是依赖下面的这些gem的，所以只需要安装rspec-rails即可。
@@ -379,6 +384,9 @@ group :development do
   gem 'guard'
   gem 'guard-bundler', require: false
   gem 'guard-rspec', '~> 4.7', require: false
+
+  # graphql 初始化的时候引入的。
+  gem 'graphiql-rails'
 end
 
 group :test do

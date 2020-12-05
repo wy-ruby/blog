@@ -236,7 +236,6 @@ GEM
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
     formatador (0.2.5)
-    geocoder (1.6.4)
     get_process_mem (0.2.7)
       ffi (~> 1.0)
     globalid (0.4.2)
@@ -263,6 +262,9 @@ GEM
       rack
     grape_on_rails_routes (0.3.2)
       rails (>= 3.1.1)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
     graphql (1.11.4)
     guard (2.16.2)
       formatador (>= 0.2.4)
@@ -778,7 +780,6 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-rails
-  geocoder
   grape
   grape-entity
   grape-swagger
@@ -786,6 +787,7 @@ DEPENDENCIES
   grape-swagger-rails
   grape_logging
   grape_on_rails_routes
+  graphiql-rails
   graphql
   guard
   guard-bundler
