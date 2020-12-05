@@ -7,6 +7,7 @@ ruby "2.5.8"
 gem "rails", "~> 5.2.4"
 
 # 使用pg数据库
+# 注意使用pg数据库的话，需要在系统中安装 yum install postgresql-devel 的支持。
 gem "pg"
 # pg数据库的性能仪表板
 gem "pg_query", "~> 1.2.0"
@@ -274,6 +275,9 @@ gem 'meta-tags'
 # gem "actionpack-page_caching"
 # gem "rails-observers"
 
+# 生成文档工具
+gem "sdoc"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
@@ -293,9 +297,7 @@ group :development, :test do
   # 一个统一的方法，可以在单个调用中模拟Time.now，Date.today和DateTime.now。
   gem 'timecop'
 
-  # 生成文档工具
-  gem "sdoc"
-
+  # rails 使用rspec进行测试
   gem "rspec-rails", "~>4.0"
   # 实际上rspec-rails是依赖下面的这些gem的，所以只需要安装rspec-rails即可。
   # gem "rspec","~>3.10"
