@@ -78,7 +78,7 @@ set :application, "blog"
 # 输入要发布的分支
 # ask(:use_branch, 'master', echo: true)
 # @branch = fetch(:use_branch)
-@branch = "master"
+@branch = "develop"
 
 # capistrano这个gem本身的参数设置,还包括上面配置的:application以及:linked_dirs和:linked_files这两个数组。
 # # 部署的服务器的路径。默认是 { "/var/www/#{fetch(:application)}" }
@@ -182,13 +182,13 @@ set :rvm1_auto_script_path, File.expand_path("../", fetch(:deploy_to))
 
 # 执行db/fixtures/*下的任务
 # seed文件是位于以下目录： {Rails.root}/db/fixtures 或者 #{Rails.root}/db/fixtures/#{Rails.env}
-before "deploy:publishing", "db:seed_fu"
+before "deploy:published", "db:seed_fu"
 
 # 等发布完成之后把那些没有用到的gem给删除了,这个建议等删除的gem比较多的话再用。
 # after 'deploy:published', 'bundler:clean'
 
 # 部署完成后重启puma。
-after "deploy:publishing", "puma:restart"
+after "deploy:published", "puma:restart"
 # 第一次部署的时候需要执行的内容
 before "deploy", "deploy:first_deploy"
 # 在第一次部署的时候,用来创建数据库，如果不是第一次部署的话不会执行任何操作。

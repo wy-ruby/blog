@@ -40,3 +40,4 @@
 /config/schedule.rb
 # /config/deploy.rb
 /config/deploy/production.rb
+/test.rb
