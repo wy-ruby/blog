@@ -15,3 +15,5 @@ test:
 production:
   <<: *default
   database: blog
+  username: wy
+  password: <%= Rails.application.credentials[Rails.env.to_sym][:database_password].to_s %>
