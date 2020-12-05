@@ -14,5 +14,5 @@ test:
 
 production:
   <<: *base
-  port: 6378
-  password: <%= Rails.application.credentials[Rails.env.to_sym][:redis_password] %>
+  port: 6379
+  password: <%= Rails.application.credentials[Rails.env.to_sym][:redis_password].to_s %>
