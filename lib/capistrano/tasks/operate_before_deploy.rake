@@ -18,7 +18,7 @@ namespace :first_deploy do
         # 上传nginx的配置文件到要部署的服务器，不经常改动就只在第一次部署的时候上传一次。
         invoke "puma:nginx_config"
 
-        invoke "deploy:check:linked_files"
+        # invoke "deploy:check:linked_files"
       end
     end
   end

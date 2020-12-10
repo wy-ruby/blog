@@ -54,8 +54,10 @@ gem "sprockets", "~> 3.0"
 
 # 异步队列。
 gem "sidekiq"
-# 在sidekiq的worker中进行周期性的执行
+# 在sidekiq的worker中进行周期性的执行,向Sidekiq添加了重复的作业。
 # gem 'mini_scheduler'
+# sidekiq 定时执行
+# gem 'sidekiq-cron'
 
 # 写入Linux中的crontab定时任务的一个ruby的DSL
 gem "whenever", require: false
@@ -277,6 +279,9 @@ gem 'meta-tags'
 
 # 生成文档工具
 gem "sdoc"
+
+# 异常监控，可以把异常信息写入数据库。
+gem 'exception_notification'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
