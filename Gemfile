@@ -128,7 +128,7 @@ gem "pundit"
 # 搭配devise、pundit使用，添加role对权限更加精细化的操作，比如实现RBAC权限管理。
 gem "rolify"
 # 权限管理这一块或者可以使用下面的这个
-# gem "cancancan"
+gem "cancancan"
 
 # 三方平台 OAuth 验证登陆
 gem "omniauth"
@@ -283,6 +283,8 @@ gem "sdoc"
 # 异常监控，可以把异常信息写入数据库。
 gem 'exception_notification'
 
+# settings 配置
+# gem "rails-settings-cached"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]

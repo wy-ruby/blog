@@ -1,7 +1,9 @@
 class BaseController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # 在所有请求前调用该方法，用来配置i18n中的使用 URL 查询参数来设置区域。
   before_action :set_locale
+
+  before_action :test_before
   # 集中修改 URL 动态生成规则,所有依赖于 url_for 的辅助方法（例如，具名路由辅助方法 root_path 和 root_url，资源路由
   # 辅助方法 books_path 和 books_url 等等）都会自动在查询字符串中添加区域设置，例如：http://localhost:3000/?locale=zh-CN
   def self.default_url_options
@@ -44,5 +46,9 @@ class BaseController < ApplicationController
     # request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
     # 这里建议使用Rack Locale中间件去实现，这样才能相对更加精准。
     # 参考：https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/locale.rb
+  end
+
+  def test_before
+    p "base 中测速 before 看看"
   end
 end

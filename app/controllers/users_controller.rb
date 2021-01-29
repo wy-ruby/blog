@@ -1,6 +1,8 @@
 class UsersController < BaseController
   before_action :set_user, only: %i[show edit update destroy]
 
+  before_action :test_before
+
   # GET /users
   # GET /users.json
   def index
@@ -72,5 +74,9 @@ class UsersController < BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:name, :email, :age, :sex, :password, :password_confirmation)
+  end
+
+  def test_before
+    p "users 中测速 before 看看"
   end
 end
