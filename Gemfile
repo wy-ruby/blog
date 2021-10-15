@@ -1,23 +1,23 @@
 source "https://gems.ruby-china.com"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.5.8"
+ruby "3.0.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.2.4"
+gem "rails", "~> 6"
 
 # 使用pg数据库
 # 注意使用pg数据库的话，需要在系统中安装 yum install postgresql-devel 的支持。
 gem "pg"
 # pg数据库的性能仪表板
-gem "pg_query", "~> 1.2.0"
+gem "pg_query"
 gem "pghero"
 
 # Use Puma as the app server
 gem "puma"
 
 # Use SCSS for stylesheets
-gem "sass-rails", "~> 5.0"
+gem "sass-rails"
 
 # Ruby 包装 UglifyJS（使用 NodeJS 开发），作用是通过删除空白和注释、缩短局部变量名及其他微小
 # 优化（例如在可能的情况下把 if&#8230;&#8203;else 语句修改为三元运算符）压缩 JavaScript 代码。
@@ -27,30 +27,30 @@ gem "uglifier"
 # gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem "coffee-rails", "~> 4.2"
+gem "coffee-rails"
 
 # 在rails中使用 react
 gem "react-rails"
 
 # Turbolinks
 # 详情参考链接: https://github.com/turbolinks/turbolinks 或者参考docs/Turbolinks.md
-gem "turbolinks", "~> 5.2"
+gem "turbolinks"
 
 # 使用生成器生成JSON对象，常见如views/**/xxx.json.jbuilder文件 .详细见: /docs/Jbuilder.md
-gem "jbuilder", "~> 2.10"
+gem "jbuilder"
 
 # Use ActiveModel has_secure_password
-gem "bcrypt", "~> 3.1"
+gem "bcrypt"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
 # Reduces boot times through caching; required in config/boot.rb
 # 使用缓存的方式加快rails应用的启动速度。缓存到tmp/cache目录下，一般是该目录下的bootsnap*文件夹
-gem "bootsnap", "~> 1.4.0", require: false
+gem "bootsnap", require: false
 
 # 是用于编译和服务assets的Ruby库
-gem "sprockets", "~> 3.0"
+gem "sprockets"
 
 # 异步队列。
 gem "sidekiq"
@@ -71,8 +71,8 @@ gem "rails-i18n"
 # redis-rails和redis-rack-cache是提供了完整的一套如(cache,session,http cache)等存储功能的包。如果rails是5.2及以上的版本，并且只
 # 需要使用片段缓存的话就不需要这个了，rails5.2已经有了。
 # redis-namespace这个是可以让redis在配置文件中设置命名空间的gem包
-gem "hiredis", "~> 0.6.1"
-gem "redis", "~> 4"
+gem "hiredis"
+gem "redis"
 gem "redis-namespace"
 
 gem "redis-rack-cache"
@@ -90,7 +90,7 @@ gem 'jquery-rails'
 gem 'popper_js'
 
 # 前端ui框架bootstrap
-gem "bootstrap", "~> 4.5.0"
+gem "bootstrap"
 # font-awesome-rails提供了Font-Awesome Web字体和样式表，作为与asset pipeline 一起使用的Rails引擎。
 gem "font-awesome-rails"
 
@@ -170,7 +170,7 @@ gem "graphql"
 # gem "postmark-rails"
 
 # 拒绝低版本浏览器的访问，并给其返回一个让其升级的页面。
-gem "browser_warrior", ">= 0.8.0"
+gem "browser_warrior"
 
 # 异常监控通知
 # gem 'exception_notification'
@@ -207,7 +207,7 @@ gem "simple_apm"
 # gem "rails-settings-cached", "~> 2.0"
 
 # 一个使用 Ruby 连接和操作 RabbitMQ 的客户端
-gem "bunny", "~> 2.14.1"
+gem "bunny"
 # 业务通过 Bunny 在 Rails 中简易、快速地生产发布了消息，就需要有消费者来接收和消费消息，
 # Sneakers 是一个处理 RabbitMQ 消息队列的高性能 Ruby 框架
 gem "sneakers"
@@ -322,7 +322,7 @@ group :development do
   gem "web-console"
 
   # 监听文件变动，并你去通知修改
-  gem "listen", "~> 3.2"
+  gem "listen"
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # 运行测试时，保持development在后台运行，不需要重启
@@ -331,7 +331,7 @@ group :development do
   gem "spring-watcher-listen"
 
   # capistrano相关的gem。如果服务器没有安装rvm及ruby可以使用rvm1-capistrano3这个gem去在服务端自动安装。
-  gem "capistrano", "~> 3.11", require: false
+  gem "capistrano", "~> 3.1", require: false
   gem "capistrano-bundler", "~> 2.0", require: false
   gem "capistrano-rails", "~> 1.4", require: false
   gem "capistrano-rvm", require: false
@@ -353,8 +353,8 @@ group :development do
   gem "rubycritic", require: false
 
   # 代码风格指南工具。具体使用,在根目录输入命令 rubocop -h 查看即可。 rubocop ./config/deploy
-  gem "rubocop", "~> 0.85.0", require: false
-  gem "rubocop-performance", "~> 1.6.0", require: false
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
 
   # 对应用进行基准测试。命令：  bundle exec derailed bundle:mem   使用 derailed -h查看可用命令
@@ -400,7 +400,7 @@ end
 
 group :test do
   # 基于rake的Web应用程序的集成测试工具。它模拟用户如何与网站交互
-  gem "capybara", ">= 2.15"
+  gem "capybara"
   # 是Capybara的纯Ruby驱动，它允许您在无头的Chrome或Chromium上运行Capybara测试。。
   gem "cuprite"
   # 用于集成测试HTML表单
@@ -409,7 +409,7 @@ group :test do
   gem "launchy"
 
   # 用来精简 rspec 测试代码编写的gem
-  gem 'shoulda-matchers', '~> 4.0'
+  gem 'shoulda-matchers'
 
   # 模拟用户的行为，与html交互
   gem "selenium-webdriver"
